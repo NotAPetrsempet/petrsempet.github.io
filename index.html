@@ -1,0 +1,8 @@
+<center>
+  <h1 id="speed">-- м/с</h1>
+</center>
+<script>
+  navigator.geolocation.watchPosition(function(pos){
+    speed.innerHTML = pos.coords.speed + ' м/с';
+  }, function(){});
+</script>
