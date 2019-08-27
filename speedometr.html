@@ -11,7 +11,7 @@
 <button id="startbutton" onClick="letsstart();">Поехали!</button>
 <img src="kompas.png" id="kompas">
 <script>
-
+var min_vys = true;
 var isFirst = true;
 var maxspeed = 0;
 var opas = false;
@@ -113,6 +113,8 @@ if (isFirst){
 	kompas.style.transform = 'rotate('+position.coords.heading+'deg)';
 	if (position.coords.altitude < 101 & min_vys){
 		speechSynthesis.speak(new SpeechSynthesisUtterance('Высота минимальная'));
+		min_vys = false;
+		setTimeout(function(){min_vys = true;}, 60000);
 	}
 	latlong.innerHTML = 'Шир.: '+position.coords.latitude+', <br> дол.: '+position.coords.longitude;
 }
