@@ -10,6 +10,7 @@
 <p id="max_speed">Максимальная скорость: -- км/ч</p>
 <button id="startbutton" onClick="letsstart();">Поехали!</button>
 <img src="kompas.png" id="kompas">
+	<p id="alt">Высота: --- м</p>
 <script>
 var min_vys = true;
 var isFirst = true;
@@ -79,7 +80,7 @@ if (isFirst){
 	speed.innerHTML = position.coords.speed + ' м/с';
 	var mm = position.coords.speed * 60;
 	var mh = mm * 60;
-	var kmh = mh * 1000;
+	var kmh = mh / 1000;
 	kmh_txt.innerHTML = kmh + ' км/ч';
 	if (kmh > maxspeed){
 		speechSynthesis.speak(new SpeechSynthesisUtterance('Новая максимальная скорость'));
@@ -110,13 +111,14 @@ if (isFirst){
 		setTimeout(function(){opas = false;}, 7000);
 	}
 	
-	kompas.style.transform = 'rotate('+position.coords.heading+'deg)';
+	kompas.style.transform = 'rotate(180deg)';
 	if (position.coords.altitude < 101 & min_vys){
 		speechSynthesis.speak(new SpeechSynthesisUtterance('Высота минимальная'));
 		min_vys = false;
 		setTimeout(function(){min_vys = true;}, 60000);
 	}
 	latlong.innerHTML = 'Шир.: '+position.coords.latitude+', <br> дол.: '+position.coords.longitude;
+	alt.innerHTML = 'Высота: '+position.coords.altitude+' м';
 }
 function error(err){
 document.body.style.background = 'blue';
