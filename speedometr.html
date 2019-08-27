@@ -77,8 +77,8 @@ if (isFirst){
 }
 	var date = new Date();
 	refresh.innerHTML = 'Последнее обновление: '+date.getHours()+':'+date.getMinutes()+':'+date.getSeconds();
-	speed.innerHTML = position.coords.speed + ' м/с';
-	var mm = position.coords.speed * 60;
+	speed.innerHTML = Math.round(position.coords.speed) + ' м/с';
+	var mm = Math.round(position.coords.speed) * 60;
 	var mh = mm * 60;
 	var kmh = mh / 1000;
 	kmh_txt.innerHTML = kmh + ' км/ч';
