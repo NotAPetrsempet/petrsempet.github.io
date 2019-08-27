@@ -83,8 +83,7 @@ if (isFirst){
 	var kmh = mh / 1000;
 	kmh_txt.innerHTML = kmh + ' км/ч';
 	if (kmh > maxspeed){
-		speechSynthesis.speak(new SpeechSynthesisUtterance('Новая максимальная скорость'));
-		maxspeed = kmh;
+			maxspeed = kmh;
 	}
 	max_speed.innerHTML = 'Максимальная скорость: '+maxspeed+' км/ч'
 	if (kmh == 0){
