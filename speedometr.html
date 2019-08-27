@@ -9,12 +9,11 @@
 <p id="refresh"></p>
 <p id="max_speed">Максимальная скорость: -- км/ч</p>
 <button id="startbutton" onClick="letsstart();">Поехали!</button>
-<button id="refresh_bttn" onClick="navigator.geolocation.watchPosition(pos, error);" disabled>Обновить</button>
 <script>
 
 var isFirst = true;
 var maxspeed = 0;
-
+var opas = false;
 hours();
 function hours(){
 var date = new Date();
@@ -43,7 +42,6 @@ time.innerHTML = hours+':'+min+':'+sec+':'+mil;
 setInterval('hours()', 1);
 }
 function letsstart(){
-refresh_bttn.disabled = false;
 	startbutton.style.display = 'none';
 	var date = new Date();
 	var hours = date.getHours();
@@ -104,6 +102,11 @@ if (isFirst){
 	if (kmh > 29){
 		speed.style.color = 'red';
 		kmh_txt.style.color = 'red';
+	}
+	if (!opas & kmh > 35){
+		speechSynthesis.speak(new SpeechSynthesisUtterance('Опасная скорость! Ваша скорость: '+kmh+' километров в час'));
+		opas = true;
+		setTimeout(function(){opas = false;}, 7000);
 	}
 	latlong.innerHTML = 'Шир.: '+position.coords.latitude+', <br> дол.: '+position.coords.longitude;
 }
