@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC>
+<html>
+<center>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<h1 id="time">--:--:--:---</h1>
+<h1 id="speed" style="font-size: 64; color: black;">-- м/с</h1>
+<h3 id="kmh_txt" style="color: black;">-- км/ч</h3>
+<h4 id="latlong" style="color: black;">Шир.: --.------, <br> дол.: --.------</h4>
+<p id="refresh"></p>
+<p id="max_speed">Максимальная скорость: -- км/ч</p>
+<button id="startbutton" onClick="letsstart();">Поехали!</button>
+<button id="refresh_bttn" onClick="navigator.geolocation.watchPosition(pos, error);" disabled>Обновить</button>
+<script>
+
+var isFirst = true;
+var maxspeed = 0;
+
+hours();
+function hours(){
+var date = new Date();
+var hours = date.getHours();
+var min = date.getMinutes();
+var sec = date.getSeconds();
+var mil = date.getMilliseconds();
+if (hours < 10){
+	hours = '0' + hours;
+}
+if (min < 10){
+	min = '0' + min;
+}
+if (sec < 10){
+	sec = '0' + sec;
+}
+if (mil < 10){
+	mil = '00' + mil;
+	
+}else{
+if (mil < 100){
+	mil = '0' + mil;
+}
+}
+time.innerHTML = hours+':'+min+':'+sec+':'+mil;
+setInterval('hours()', 1);
+}
+function letsstart(){
+refresh_bttn.disabled = false;
+	startbutton.style.display = 'none';
+	var date = new Date();
+	var hours = date.getHours();
+	if (hours < 13){
+		speechSynthesis.speak(new SpeechSynthesisUtterance('Доброе утро! Разрешите узнавать ваше местоположение!'));
+	}
+		if (hours > 12 & hours < 18){
+		speechSynthesis.speak(new SpeechSynthesisUtterance('Добрый день! Разрешите узнавать ваше местоположение!'));
+	}
+		if (hours > 17){
+		speechSynthesis.speak(new SpeechSynthesisUtterance('Добрый вечер! Разрешите узнавать ваше местоположение!'));
+	}
+	navigator.geolocation.watchPosition(pos, error);
+}
+function pos(position){
+onbeforeunload = function(evt){
+var message = 'При обновлении или закрытии страницы все максимальный значения, время в пути, время в движении и т.п. будут удалены. Вы уверены, что хотите это сделать?';
+if (typeof evt == 'undefined'){
+evt = window.event;
+}
+if (evt){
+evt.returnValue = message;
+}
+return message;
+}
+document.body.style.background = '#FFFFFF';
+console.log(position);
+if (isFirst){
+	isFirst = false;
+	speechSynthesis.speak(new SpeechSynthesisUtterance('Счастливого пути!'));
+}
+	var date = new Date();
+	refresh.innerHTML = 'Последнее обновление: '+date.getHours()+':'+date.getMinutes()+':'+date.getSeconds();
+	speed.innerHTML = position.coords.speed + ' м/с';
+	var mm = position.coords.speed * 60;
+	var mh = mm * 60;
+	var kmh = mh * 1000;
+	kmh_txt.innerHTML = kmh + ' км/ч';
+	if (kmh > maxspeed){
+		speechSynthesis.speak(new SpeechSynthesisUtterance('Новая максимальная скорость'));
+		maxspeed = kmh;
+	}
+	max_speed.innerHTML = 'Максимальная скорость: '+maxspeed+' км/ч'
+	if (kmh == 0){
+		speed.style.color = 'black';
+		kmh_txt.style.color = 'black';
+		
+	}
+	if (kmh > 0 & kmh < 21){
+		speed.style.color = 'green';
+		kmh_txt.style.color = 'green';
+	}
+	if (kmh > 20 & kmh < 30){
+		speed.style.color = 'yellow';
+		kmh_txt.style.color = 'yellow';
+	}
+	
+	if (kmh > 29){
+		speed.style.color = 'red';
+		kmh_txt.style.color = 'red';
+	}
+	latlong.innerHTML = 'Шир.: '+position.coords.latitude+', <br> дол.: '+position.coords.longitude;
+}
+function error(err){
+document.body.style.background = 'blue';
+if (err.code == 1){
+speechSynthesis.speak(new SpeechSynthesisUtterance('Разрешите узнавать ваше местоположение! Это нужно для расчёта скорости'));
+alert('Разрешите узнавать Ваше местоположение! Это нужно для расчёта скорости');
+	navigator.geolocation.watchPosition(pos, error);
+}
+if (err.code == 2){
+	speechSynthesis.speak(new SpeechSynthesisUtterance('Потеряна связь со спутниками и сетью!'));
+	alert('Потеряна связь со спутниками и/или сетью!');
+}
+if (err.code == 3){
+	speechSynthesis.speak(new SpeechSynthesisUtterance('Вычисление местоположения занимает слишком много времени'));
+	alert('Вычисление местоположения занимает слишком много времени');
+}
+if (err.code == 0){
+	speechSynthesis.speak(new SpeechSynthesisUtterance('Неизвестная ошибка!'));
+	alert(err.message);
+}
+}
+</script>
+</html>
