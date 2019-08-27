@@ -109,7 +109,11 @@ if (isFirst){
 		opas = true;
 		setTimeout(function(){opas = false;}, 7000);
 	}
-	kompas.style.transform = 'rotate("'+position.coords.heading+'deg")';
+	
+	kompas.style.transform = 'rotate('+position.coords.heading+'deg)';
+	if (position.coords.altitude < 101 & min_vys){
+		speechSynthesis.speak(new SpeechSynthesisUtterance('Высота минимальная'));
+	}
 	latlong.innerHTML = 'Шир.: '+position.coords.latitude+', <br> дол.: '+position.coords.longitude;
 }
 function error(err){
