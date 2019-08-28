@@ -74,10 +74,9 @@ console.log(position);
 if (isFirst){
 	isFirst = false;
 	speechSynthesis.speak(new SpeechSynthesisUtterance('Счастливого пути! Проверка голосового оповещения! Внимание!'));
-	while (speechSynthesis.speaking){}
 		var audio = new Audio();
 		audio.src = 'min_vys.mp3';
-		audio.play();
+		setTimeout(audio.play(), 5000);
 }
 	var date = new Date();
 	refresh.innerHTML = 'Последнее обновление: '+date.getHours()+':'+date.getMinutes()+':'+date.getSeconds();
