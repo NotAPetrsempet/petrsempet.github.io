@@ -52,7 +52,7 @@ setInterval('hours()', 1);
 			var oscillator = context.createOscillator();
 			oscillator.frequency.value = 400;
 			oscillator.connect(context.destination);
-			oscillator.start();
+			oscillator.start(1000);
 		};
 		rec.start();
 	}
