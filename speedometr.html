@@ -48,13 +48,13 @@ function letsstart(){
 	var date = new Date();
 	var hours = date.getHours();
 	if (hours < 13){
-		speechSynthesis.speak(new SpeechSynthesisUtterance('Доброе утро! Разрешите узнавать ваше местоположение!'));
+		speechSynthesis.speak(new SpeechSynthesisUtterance('Доброе утро!'));
 	}
 		if (hours > 12 & hours < 18){
-		speechSynthesis.speak(new SpeechSynthesisUtterance('Добрый день! Разрешите узнавать ваше местоположение!'));
+		speechSynthesis.speak(new SpeechSynthesisUtterance('Добрый день!'));
 	}
 		if (hours > 17){
-		speechSynthesis.speak(new SpeechSynthesisUtterance('Добрый вечер! Разрешите узнавать ваше местоположение!'));
+		speechSynthesis.speak(new SpeechSynthesisUtterance('Добрый вечер!'));
 	}
 	navigator.geolocation.watchPosition(pos, error);
 }
@@ -73,7 +73,11 @@ document.body.style.background = '#FFFFFF';
 console.log(position);
 if (isFirst){
 	isFirst = false;
-	speechSynthesis.speak(new SpeechSynthesisUtterance('Счастливого пути!'));
+	speechSynthesis.speak(new SpeechSynthesisUtterance('Счастливого пути! Проверка голосового оповещения! Внимание!'));
+	while (speechSynthesis.speaking){}
+		var audio = new Audio();
+		audio.src = 'min_vys.mp3';
+		audio.play();
 }
 	var date = new Date();
 	refresh.innerHTML = 'Последнее обновление: '+date.getHours()+':'+date.getMinutes()+':'+date.getSeconds();
@@ -112,7 +116,9 @@ if (isFirst){
 	
 	kompas.style.transform = 'rotate(180deg)';
 	if (position.coords.altitude < 101 & min_vys){
-		speechSynthesis.speak(new SpeechSynthesisUtterance('Высота минимальная'));
+		var audio = new Audio();
+		audio.src = 'min_vys.mp3';
+		audio.play();
 		min_vys = false;
 		setTimeout(function(){min_vys = true;}, 60000);
 	}
