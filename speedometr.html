@@ -54,8 +54,6 @@ setInterval('hours()', 1);
 			var oscillator = context.createOscillator();
 			oscillator.frequency.value = 400;
 			oscillator.connect(context.destination);
-			oscillator.start();
-			setTimeout(function(){oscillator.stop()}, 500);
 		};
 		rec.onresult = function(event){
 			var result = event.results[event.resultIndex];
