@@ -18,6 +18,8 @@ var min_vys = true;
 var isFirst = true;
 var maxspeed = 0;
 var opas = false;
+	var kmh = 0;
+	var lev = true;
 hours();
 function hours(){
 var date = new Date();
@@ -53,8 +55,40 @@ setInterval('hours()', 1);
 			oscillator.frequency.value = 400;
 			oscillator.connect(context.destination);
 			oscillator.start();
-			setTimeout(function(){oscillator.stop();}, 1000);
+			setTimeout(function(){oscillator.stop()}, 500);
 		};
+		rec.onresult = function(event){
+			var result = event.results[event.resultIndex];
+			if (result[0].transcript.toLowerCase() == 'скорость'){
+				var okonch = "";
+				
+				if (kmh > 4 & kmh < 21 || parseInt(kmh.toString().substring(kmh.toString().length - 1, 1)) < 10 & parseInt(kmh.toString().substring(kmh.toString().length - 1, 1)) > 4){
+					okonch = 'ов';
+				}else{
+				if (parseInt(kmh.toString().substring(kmh.toString().length - 1, 1)) = 1 & kmh != 11){
+					okonch = '';
+				}else{
+					okonch = 'a';
+				}
+				}
+				speechSynthesis.speak(new SpeechSynthesisUtterance('Ваша скорость: '+kmh+' километр'+okonch+' в час'));
+			}
+			if (result[0].transcript.toLowerCase() == 'заряд'){
+				var bat = navigator.getBattery();
+				var level;
+				bat.then(function(battery){level = battery.level});
+				if (level > 4 & level < 21 || parseInt(level.toString().substring(level.toString().length - 1, 1)) < 10 & parseInt(level.toString().substring(level.toString().length - 1, 1)) > 4){
+					okonch = 'ов';
+				}else{
+				if (parseInt(level.toString().substring(level.toString().length - 1, 1)) = 1 & kmh != 11){
+					okonch = '';
+				}else{
+					okonch = 'a';
+				}
+				}
+				speechSynthesis.speak(new SpeechSynthesisUtterance('Уровень заряда батареи '+level*100+' процент'+okonch));
+			}
+		}
 		rec.start();
 	}
 function letsstart(){
@@ -97,7 +131,7 @@ if (isFirst){
 	speed.innerHTML = Math.round(position.coords.speed) + ' м/с';
 	var mm = Math.round(position.coords.speed) * 60;
 	var mh = mm * 60;
-	var kmh = mh / 1000;
+	kmh = mh / 1000;
 	kmh_txt.innerHTML = kmh + ' км/ч';
 	if (kmh > maxspeed){
 			maxspeed = kmh;
@@ -136,6 +170,14 @@ if (isFirst){
 			navigator.vibrate(1000);
 			speechSynthesis.speak(new SpeechSynthesisUtterance('Красная зона! Будьте внимательны! Красная зона!'));
 		}
+	}
+	var level;
+	var bat = navigator.getBattery();
+	bat.then(function(battery){level = battery.level});
+	if (level*100 < 30 & lev){
+		speechSynthesis.speak(new SpeechSynthesisUtterance('Внимание! Низкий уровень заряда батареи'));
+		lev = false;
+		setTimeout(function(){lev = true;}, 60000);
 	}
 	if (!opas & kmh > 35){
 		speechSynthesis.speak(new SpeechSynthesisUtterance('Опасная скорость! Ваша скорость: '+kmh+' километров в час'));
