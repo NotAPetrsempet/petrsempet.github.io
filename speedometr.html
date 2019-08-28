@@ -12,6 +12,7 @@
 <img src="kompas.png" id="kompas">
 	<p id="alt">Высота: --- м</p>
 <script>
+	var zone = 0;
 var min_vys = true;
 var isFirst = true;
 var maxspeed = 0;
@@ -75,9 +76,7 @@ if (isFirst){
 	isFirst = false;
 	speechSynthesis.speak(new SpeechSynthesisUtterance('Счастливого пути! Проверка голосового оповещения! Внимание!'));
 		var audio = new Audio('min_vys.mp3');
-	var variable = false;
-		setTimeout(function(){audio.play(); variable = true}, 5000);
-	while (!variable){}
+		setTimeout(function(){audio.play();}, 5000);
 }
 	var date = new Date();
 	refresh.innerHTML = 'Последнее обновление: '+date.getHours()+':'+date.getMinutes()+':'+date.getSeconds();
@@ -93,20 +92,36 @@ if (isFirst){
 	if (kmh == 0){
 		speed.style.color = 'black';
 		kmh_txt.style.color = 'black';
-		
+		if (zone != 0){
+			zone = 0;
+			speechSynthesis.speak(new SpeechSynthesisUtterance('Чёрная зона'));
+		}
 	}
 	if (kmh > 0 & kmh < 21){
 		speed.style.color = 'green';
 		kmh_txt.style.color = 'green';
+		if (zone != 1){
+			zone = 1;
+			speechSynthesis.speak(new SpeechSynthesisUtterance('Зелёная зона'));
+		}
 	}
 	if (kmh > 20 & kmh < 30){
 		speed.style.color = 'yellow';
 		kmh_txt.style.color = 'yellow';
+		if (zone != 2){
+			zone = 2;
+			speechSynthesis.speak(new SpeechSynthesisUtterance('Жёлтая зона'));
+		}
 	}
 	
 	if (kmh > 29){
 		speed.style.color = 'red';
 		kmh_txt.style.color = 'red';
+		if (zone != 3){
+			zone = 3;
+			navigator.vibrate(1000);
+			speechSynthesis.speak(new SpeechSynthesisUtterance('Красная зона! Будьте внимательны! Красная зона!'));
+		}
 	}
 	if (!opas & kmh > 35){
 		speechSynthesis.speak(new SpeechSynthesisUtterance('Опасная скорость! Ваша скорость: '+kmh+' километров в час'));
@@ -114,10 +129,9 @@ if (isFirst){
 		setTimeout(function(){opas = false;}, 7000);
 	}
 	
-	kompas.style.transform = 'rotate(180deg)';
+	kompas.style.transform = 'rotate('+position.coords.heading+'deg)';
 	if (position.coords.altitude < 101 & min_vys){
-		var audio = new Audio();
-		audio.src = 'min_vys.mp3';
+		var audio = new Audio('min_vys.mp3');
 		audio.play();
 		min_vys = false;
 		setTimeout(function(){min_vys = true;}, 60000);
