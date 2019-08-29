@@ -57,22 +57,11 @@ setInterval('hours()', 1);
 		};
 		rec.onresult = function(event){
 			var result = event.results[event.resultIndex];
+			console.log(result[0].transcript.toLowerCase());
 			if (result[0].transcript.toLowerCase() == 'скорость'){
-				var okonch = "";
-				if (kmh != null){
-				if (kmh > 4 & kmh < 21 || parseInt(kmh.toString().substring(kmh.toString().length - 1, 1)) < 10 & parseInt(kmh.toString().substring(kmh.toString().length - 1, 1)) > 4){
-					okonch = 'ов';
-				}else{
-				if (parseInt(kmh.toString().substring(kmh.toString().length - 1, 1)) = 1 & kmh != 11){
-					okonch = '';
-				}else{
-					okonch = 'a';
-				}
-				}
-				speechSynthesis.speak(new SpeechSynthesisUtterance('Ваша скорость: '+kmh+' километр'+okonch+' в час'));
-				}else{
-					speechSynthesis.speak(new SpeechSynthesisUtterance('Скорость определить не получилось'));
-				}
+				
+				speechSynthesis.speak(new SpeechSynthesisUtterance('Ваша скорость: '+kmh+' километров в час'));
+				
 			}
 			if (result[0].transcript.toLowerCase() == 'заряд'){
 				var bat = navigator.getBattery();
