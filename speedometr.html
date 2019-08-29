@@ -58,8 +58,9 @@ setInterval('hours()', 1);
 		rec.onresult = function(event){
 			var result = event.results[event.resultIndex];
 			console.log(result[0].transcript.toLowerCase());
+			var speak = false;
 			if (result[0].transcript.toLowerCase() == 'скорость'){
-				
+				speak = true;
 				speechSynthesis.speak(new SpeechSynthesisUtterance('Ваша скорость: '+kmh+' километров в час'));
 				
 			}
@@ -67,16 +68,16 @@ setInterval('hours()', 1);
 				var bat = navigator.getBattery();
 				var level;
 				bat.then(function(battery){level = battery.level});
-				if (level > 4 & level < 21 || parseInt(level.toString().substring(level.toString().length - 1, 1)) < 10 & parseInt(level.toString().substring(level.toString().length - 1, 1)) > 4){
-					okonch = 'ов';
-				}else{
-				if (parseInt(level.toString().substring(level.toString().length - 1, 1)) = 1 & kmh != 11){
-					okonch = '';
-				}else{
-					okonch = 'a';
-				}
-				}
-				speechSynthesis.speak(new SpeechSynthesisUtterance('Уровень заряда батареи '+level*100+' процент'+okonch));
+				speak = true;
+				speechSynthesis.speak(new SpeechSynthesisUtterance('Уровень заряда батареи '+level*100+' процентов'));
+			}
+			if (result[0].transcript.toLowerCase() == 'время'){
+				var date = new Date();
+				speak = true;
+				speechSynthesis.speak(new SpeechSynthesisUtterance('Текущее время: '+date.getHours()+'часов, '+date.getMinutes()+' минут'));
+			}
+			if (!speak){
+				speechSynthesis.speak(new SpeechSynthesisUtterance('Неизвестная команда!'));
 			}
 		}
 		rec.start();
