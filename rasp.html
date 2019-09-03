@@ -75,13 +75,15 @@
 		if (numurok == 5){
 		timer(12, 25);
 	}
+		var predmin = 0;
 	function timer(hour, minute){
 		var timed = new Date();
 		var h = timed.getHours();
 		var m = timed.getMinutes();
+		predmin = m;
 		h = hour - h;
 		m = (minute - m) - 1;
-		if (m < 0){h -= 1; m = 59;}
+		
 		var s = 60 - timed.getSeconds();
 if (h < 10){
 			h = '0'+h;
