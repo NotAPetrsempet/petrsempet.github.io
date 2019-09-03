@@ -81,6 +81,7 @@
 		var m = timed.getMinutes();
 		h = hour - h;
 		m = (minute - m) - 1;
+		if (m < 0){h -= 1; m = 59;}
 		var s = 60 - timed.getSeconds();
 if (h < 10){
 			h = '0'+h;
