@@ -1,0 +1,96 @@
+<center id="cntr">
+	<h2>Следующий урок:</h2>
+	<h1 id="next"></h1>
+	<h3>Учитель:</h3>
+	<h2 id="teacher"></h2>
+	<h3>Кабинет:</h3>
+	<h2 id="cabine"></h2>
+	<h3>Через:</h3>
+	<h2 id="time"></h2>
+</center>
+	<script>
+	var teach = "";
+	var cab = "";
+	var urok = "";
+	var numurok = 0;
+	var date = new Date();
+	var notification = false;
+	if (date.getDay() == 2){
+		if (date.getHours() <= 8){
+			teach = "Стадчикова Нина Александровна";
+			urok = "Русский язык";
+			cab = "16";
+			numurok = 1;
+		}
+		if (date.getHours() == 9){
+			teach = "Сорокина Эльза Владиславовна";
+			urok = "Физическая культура";
+			cab = "Спортзал";
+			numurok = 2;
+		}
+		if (date.getHours() == 10){
+			teach = "Пакулов Владимир Алексеевич";
+			urok = "Технология(мальчики)";
+			cab = "11";
+			numurok = 3;
+		}
+		if (date.getHours() == 11){
+			teach = "Пакулов Владимир Алексеевич";
+			urok = "Технология II(мальчики)";
+			cab = "11";
+			numurok = 4;
+		}
+		if (date.getHours() == 12){
+			teach = "Стадчикова Нина Александровна";
+			urok = "Русский язык";
+			cab = "41";
+			numurok = 5;
+		}
+		if (date.getHours() >= 13){
+			cntr.innerHTML = '<h1>Уроков больше нет!!!</h1>';
+		}
+		notification = true;
+	}
+	if (notification){
+		next.innerHTML = urok;
+		teacher.innerHTML = teach;
+		cabine.innerHTML = cab;
+	}
+	if(!notification){
+		cntr.innerHTML = '';
+		cntr.innerHTML += '<h1>Данных о расписании нет</h1>';
+	}
+	if (numurok == 1){
+		timer(8, 30);
+	}
+		if (numurok == 2){
+		timer(9, 25);
+	}
+		if (numurok == 3){
+		timer(10, 20);
+	}
+		if (numurok == 4){
+		timer(11, 20);
+	}
+		if (numurok == 5){
+		timer(12, 25);
+	}
+	function timer(hour, minute){
+		var timed = new Date();
+		var h = timed.getHours();
+		var m = timed.getMinutes();
+		h = hour - h;
+		m = (minute - m) - 1;
+		var s = 60 - timed.getSeconds();
+if (h < 10){
+			h = '0'+h;
+		}		if (m < 10){
+			m = '0'+m;
+		}
+						if (s < 10){
+			s = '0'+s;
+		}
+		time.innerHTML = h+':'+m+':'+s;
+		setTimeout(function(){timer(hour, minute)}, 1);
+	}
+	</script>
