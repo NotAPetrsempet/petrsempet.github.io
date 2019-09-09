@@ -12,6 +12,7 @@
 <img src="kompas.png" id="kompas">
 	<p id="alt">Высота: --- м</p>
 	<button id="recogn" onclick="recognition()" disabled style="width: 200px; height: 100px;">Голосовые команды</button>
+	<script src="lib.js"></script>
 <script>
 	var zone = 0;
 var min_vys = true;
@@ -20,6 +21,7 @@ var maxspeed = 0;
 var opas = false;
 	var kmh = 0;
 	var lev = true;
+	var predupr = false;
 hours();
 function hours(){
 var date = new Date();
@@ -113,6 +115,8 @@ document.body.style.background = '#FFFFFF';
 console.log(position);
 if (isFirst){
 	isFirst = false;
+	var pred = new Audio("predupr.wma");
+	pred.play();
 	speechSynthesis.speak(new SpeechSynthesisUtterance('Счастливого пути! Проверка голосового оповещения! Внимание!'));
 		var audio = new Audio('min_vys.mp3');
 		setTimeout(function(){audio.play();}, 5000);
@@ -136,6 +140,11 @@ if (isFirst){
 			speechSynthesis.speak(new SpeechSynthesisUtterance('Чёрная зона'));
 		}
 	}
+	if (getDistation(position, 55.600797, 38.087173) < 101 & !predupr ||getDistation(position, 55.604369, 38.081232) < 101 & !predupr){
+	    	var pred = new Audio("predupr.wma");
+	pred.play();
+		var predupr = true;
+	    }
 	if (kmh > 0 & kmh < 21){
 		speed.style.color = 'green';
 		kmh_txt.style.color = 'green';
