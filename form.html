@@ -1,9 +1,9 @@
 <form action="send.php">
-  Ваше имя: <input pattern="[a-zA-ZА-Яа-я]{2,}" title="Больше 2 букв" name="name">
+  Ваше имя: <input pattern="[a-zA-ZА-Яа-я]{2,}" title="Больше 2 букв" required name="name">
   <br>
-  Ваша фамилия: <input pattern="[a-zA-ZА-Яа-я]{2,}" title="Больше 2 букв" name="surname">
+  Ваша фамилия: <input pattern="[a-zA-ZА-Яа-я]{2,}" title="Больше 2 букв" required name="surname">
   <br>
-  Ваш E-Mail: <input type="email" name="email">
+  Ваш E-Mail: <input type="email" required name="email">
   <br>
   <input type="submit" value="Отправить!">
 </form>
