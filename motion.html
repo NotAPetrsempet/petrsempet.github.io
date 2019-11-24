@@ -1,4 +1,4 @@
-<h1 id="motion"></h1>
+<div id="motion" style="width: 10px; height: 10px; position:absolute; background: red;"></div>
 <script>
 if (window.DeviceMotionEvent) {
     window.addEventListener('devicemotion', motion_hook, false);
@@ -9,9 +9,9 @@ else {
  
 // Обработчик события DeviceMotionEvent
 function motion_hook(event) {
-    motion.innerHTML = 'Accelerometer: '
-        + 'X=' + event.accelerationIncludingGravity.x
-        + 'Y=' + event.accelerationIncludingGravity.y
-        + 'Z=' + event.accelerationIncludingGravity.z;
+    motion.innerHTML = Math.round(event.accelerationIncludingGravity.z);
+    motion.style.left = event.accelerationIncludingGravity.x + 'px';
+    motion.style.top = event.accelerationIncludingGravity.y + 'px';
+}
 }
 </script>
