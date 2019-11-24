@@ -1,0 +1,17 @@
+<h1 id="motion"></h1>
+<script>
+if (window.DeviceMotionEvent) {
+    window.addEventListener('devicemotion', motion_hook, false);
+}
+else {
+    // DeviceMotionEvent не поддерживается
+}
+ 
+// Обработчик события DeviceMotionEvent
+function motion_hook(event) {
+    motion.innerHTML = 'Accelerometer: '
+        + 'X=' + event.accelerationIncludingGravity.x
+        + 'Y=' + event.accelerationIncludingGravity.y
+        + 'Z=' + event.accelerationIncludingGravity.z;
+}
+</script>
