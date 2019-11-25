@@ -1,7 +1,7 @@
 <div id="motion" style="width: 50px; height: 50px; position:absolute; background: red;"></div>
 <script>
-if (window.DeviceLightEvent) {
-    window.addEventListener('devicelight', motion_hook, false);
+if (window.DevicePressureEvent) {
+    window.addEventListener('devicepressure', motion_hook, false);
 }
 else {
     alert('???');
@@ -9,6 +9,6 @@ else {
  
 // Обработчик события DeviceMotionEvent
 function motion_hook(event) {
-    motion.style.background = 'rgb('+event.value+', '+event.value+', '+event.value+')';
+    motion.innerHTML = event.value;
 }
 </script>
