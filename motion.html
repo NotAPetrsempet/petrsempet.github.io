@@ -1,7 +1,7 @@
 <div id="motion" style="width: 50px; height: 50px; position:absolute; background: red;"></div>
 <script>
-if (window.DeviceOrientationEvent) {
-    window.addEventListener('deviceorientation', motion_hook, false);
+if (window.DeviceProximityEvent) {
+    window.addEventListener('deviceproximity', motion_hook, false);
 }
 else {
     // DeviceMotionEvent не поддерживается
@@ -9,9 +9,7 @@ else {
  
 // Обработчик события DeviceMotionEvent
 function motion_hook(event) {
-    motion.style.left = event.alpha + 'px';
-    motion.style.top = event.beta + 'px';
-    motion.style.width = event.gamma;
-    motion.style.height = event.gamma;
+    motion.style.width = event.value;
+    motion.style.height = event.value;
 }
 </script>
