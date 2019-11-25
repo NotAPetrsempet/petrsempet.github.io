@@ -11,6 +11,7 @@ else {
 function motion_hook(event) {
     motion.style.left = event.alpha + 'px';
     motion.style.top = event.beta + 'px';
-
+    motion.style.width = event.gamma;
+    motion.style.height = event.gamma;
 }
 </script>
