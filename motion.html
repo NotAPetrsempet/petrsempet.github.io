@@ -1,10 +1,11 @@
 <div id="motion" style="width: 50px; height: 50px; position:absolute; background: red;"></div>
 <script>
-if (window.DevicePressureEvent) {
-    window.addEventListener('devicepressure', motion_hook, false);
+    alert('Hi!');
+if (window.DeviceProximityEvent) {
+    window.addEventListener('deviceproximity', motion_hook, false);
 }
 else {
-    alert('?!?!?');
+    alert('AAA');
 }
  
 // Обработчик события DeviceMotionEvent
