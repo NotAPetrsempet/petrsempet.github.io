@@ -49,6 +49,7 @@
 				var cntx = c.getContext('2d');
 		cntx.drawImage(stream, 0, 0);
 		line.style.display = "block";
-		setTimeout(function(){result.innerHTML = "Вы похожи на дебила! Совпадение "+Math.floor(Math.random() * (101 - 95)) + 95+'%'; line.style.display = "none";}, 3000);
+		var percent = Math.floor(Math.random() * (101 - 95)) + 95;
+		setTimeout(function(){result.innerHTML = "Вы похожи на дебила!<br> Совпадение "+percent+'%'; line.style.display = "none";}, 3000);
 	}
 </script>
