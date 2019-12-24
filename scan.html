@@ -1,0 +1,50 @@
+<center>
+	<style>
+		hr{
+			background-color: red;
+			color: red;
+			border: 1px solid red;
+			position: absolute;
+			animation: scan 3s infinite;
+			width: 500px;
+			z-index: 2;
+			display: none;
+		}
+		@keyframes scan{
+			from{
+				top: 0px;
+			}
+			50%{
+				top: 500px;
+			}
+			to{
+				top: 0px;
+			}
+		}
+		video, canvas{
+			position: absolute;
+			left: 0px;
+			width: 500px;
+			height: 500px;
+			
+		}
+		video{
+			z-index: 0;
+		}
+		canvas{
+			z-index: 1;
+		}
+	</style>
+	<hr id="line">
+	<video id="stream"></video>
+	<canvas id="c"></canvas><br>
+	<button onclick="scan()">Сканировать</button>
+</center>
+<script>
+	navigator.getUserMedia({video: true, audio: false}, function(s){stream.objectSrc = s;}, function(){alert('Не могу сканировать тебя!')});
+	function scan(){
+		var cntx = c.getContext('2d');
+		cntx.drawImage(stream, 0, 0);
+		line.display = "block";
+	}
+</script>
