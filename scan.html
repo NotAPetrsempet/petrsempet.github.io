@@ -41,7 +41,7 @@
 	<button onclick="scan()">Сканировать</button>
 </center>
 <script>
-	navigator.getUserMedia({video: true, audio: false}, function(s){stream.srcObject = s;}, function(){alert('Не могу сканировать тебя!')});
+	navigator.getUserMedia({video: true, audio: false}, function(s){stream.srcObject = s; alert('Ну...');}, function(){alert('Не могу сканировать тебя!')});
 	function scan(){
 		var cntx = c.getContext('2d');
 		cntx.drawImage(stream, 0, 0);
