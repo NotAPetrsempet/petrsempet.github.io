@@ -1,0 +1,407 @@
+﻿<html>
+	<head>
+		<title>Кресты и нули</title>
+		<style>
+			.item{
+				border: 1px solid black;
+				width: 120px;
+				height: 120px;
+				display: table-cell;
+				font-size: 80px;
+				vertical-align: middle;
+				horizontal-align: center;
+      			}
+			.game{
+				display: table;
+				border: 1px solid black;
+				
+			}
+			h1, div{
+				font-family: Comic Sans MS;
+			}
+
+		</style>
+		<script>
+			
+			function write(text, count){					  
+				msg.innerHTML = text.substring(0, count);
+           			count++;
+				if (count <= text.length){
+           			setTimeout(function(){write(text, count)}, 50);
+				}
+			}
+		</script>	
+	</head>
+      <body>
+		<center>
+			<h1 id="msg"></h1>
+			<div class="game">
+				<div style="display: table-row;">
+					<div id="i1" onclick="write_user(this)" class="item"></div>
+					<div id="i2" onclick="write_user(this)" class="item"></div>
+					<div id="i3" onclick="write_user(this)" class="item"></div>
+				</div>
+				<div style="display: table-row;">
+					<div id="i4" onclick="write_user(this)" class="item"></div>
+					<div id="i5" onclick="write_user(this)" class="item"></div>
+					<div id="i6" onclick="write_user(this)" class="item"></div>
+				</div>
+				<div style="display: table-row;">
+					<div id="i7" onclick="write_user(this)" class="item"></div>
+					<div id="i8" onclick="write_user(this)" class="item"></div>
+					<div id="i9" onclick="write_user(this)" class="item"></div>
+				</div>
+      </div>
+		</center>
+		<script>
+				var win = false;
+				var rand = Math.floor(Math.random() * (4 - 1)) + 1;
+				var user = "";
+				var comp = "";
+				if (rand == 1){
+				write("Здравствуйте! Вы ходите крестиком! Дерзайте!", 1);
+				comp = "O";
+				user = "X";
+				}
+				if (rand == 2){
+				write("Здравствуйте! Вы ходите ноликом! Дерзайте!", 1);
+				comp = "X";
+				user = "O";
+				}
+				if (rand == 3){
+				write("Здравствуйте! Вы ходите крестиком! Дерзайте!", 1);
+				comp = "O";
+				user = "X";
+				random();
+				}
+				if (rand == 4){
+				check();
+				write("Здравствуйте! Вы ходите ноликом! Дерзайте!", 1);
+				comp = "X";
+				user = "O";
+				random();
+				}
+				function check_user(){
+					if (i1.innerHTML == user & i2.innerHTML == user & i3.innerHTML == user){
+						write("Поздравляю!", 1);
+						i1.style.background = "#a0e8a0";
+						i2.style.background = "#a0e8a0";
+						i3.style.background = "#a0e8a0";
+						win = true;
+					}
+					if (i4.innerHTML == user & i5.innerHTML == user & i6.innerHTML == user){
+						write("Поздравляю!", 1);
+						i4.style.background = "#a0e8a0";
+						i5.style.background = "#a0e8a0";
+						i6.style.background = "#a0e8a0";
+						win = true;
+					}
+					if (i7.innerHTML == user & i8.innerHTML == user & i9.innerHTML == user){
+						write("Поздравляю!", 1);
+						i7.style.background = "#a0e8a0";
+						i8.style.background = "#a0e8a0";
+						i9.style.background = "#a0e8a0";
+						win = true;
+					}
+					if (i1.innerHTML == user & i4.innerHTML == user & i7.innerHTML == user){
+						write("Поздравляю!", 1);
+						i1.style.background = "#a0e8a0";
+						i4.style.background = "#a0e8a0";
+						i7.style.background = "#a0e8a0";
+						win = true;
+					}
+					if (i2.innerHTML == user & i5.innerHTML == user & i8.innerHTML == user){
+						write("Поздравляю!", 1);
+						i2.style.background = "#a0e8a0";
+						i5.style.background = "#a0e8a0";
+						i8.style.background = "#a0e8a0";
+						win = true;
+					}
+					if (i3.innerHTML == user & i6.innerHTML == user & i9.innerHTML == user){
+						write("Поздравляю!", 1);
+						i3.style.background = "#a0e8a0";
+						i6.style.background = "#a0e8a0";
+						i9.style.background = "#a0e8a0";
+						win = true;
+					}
+					if (i1.innerHTML == user & i5.innerHTML == user & i9.innerHTML == user){
+						write("Поздравляю!", 1);
+						i1.style.background = "#a0e8a0";
+						i5.style.background = "#a0e8a0";
+						i9.style.background = "#a0e8a0";
+						win = true;
+					}
+					if (i7.innerHTML == user & i5.innerHTML == user & i3.innerHTML == user){
+						write("Поздравляю!", 1);
+						i7.style.background = "#a0e8a0";
+						i5.style.background = "#a0e8a0";
+						i3.style.background = "#a0e8a0";
+						win = true;
+					}
+					if (win){
+						return;
+					}
+					check();
+				}
+				function check(){
+					var temp = "";
+					if (i1.innerHTML != ""){temp+=i1.innerHTML;}
+					if (i2.innerHTML != ""){temp+=i2.innerHTML;}
+					if (i3.innerHTML != ""){temp+=i3.innerHTML;}
+					if (temp == (comp+comp)){
+					if (i1.innerHTML != comp){i1.innerHTML = comp;}
+					if (i2.innerHTML != comp){i2.innerHTML = comp;}
+					if (i3.innerHTML != comp){i3.innerHTML = comp;}
+					i1.style.background = "red";
+					i2.style.background = "red";
+					i3.style.background = "red";
+					win = true;
+					write("Вы проиграли!", 1); return;
+					}
+					temp = "";
+					if (i4.innerHTML != ""){temp+=i4.innerHTML;}
+					if (i5.innerHTML != ""){temp+=i5.innerHTML;}
+					if (i6.innerHTML != ""){temp+=i6.innerHTML;}
+					if (temp == (comp+comp)){
+					if (i4.innerHTML != comp){i4.innerHTML = comp;}
+					if (i5.innerHTML != comp){i5.innerHTML = comp;}
+					if (i6.innerHTML != comp){i6.innerHTML = comp;}
+					i4.style.background = "red";
+					i5.style.background = "red";
+					i6.style.background = "red";
+					win = true;
+					write("Вы проиграли!", 1); return;
+					}
+					temp = "";
+					if (i7.innerHTML != ""){temp+=i7.innerHTML;}
+					if (i8.innerHTML != ""){temp+=i8.innerHTML;}
+					if (i9.innerHTML != ""){temp+=i9.innerHTML;}
+					if (temp == (comp+comp)){
+					if (i7.innerHTML != comp){i7.innerHTML = comp;}
+					if (i8.innerHTML != comp){i8.innerHTML = comp;}
+					if (i9.innerHTML != comp){i9.innerHTML = comp;}
+					i7.style.background = "red";
+					i8.style.background = "red";
+					i9.style.background = "red";
+					win = true;
+					write("Вы проиграли!", 1); return;
+					}
+					temp = "";
+					if (i1.innerHTML != ""){temp+=i1.innerHTML;}
+					if (i4.innerHTML != ""){temp+=i4.innerHTML;}
+					if (i7.innerHTML != ""){temp+=i7.innerHTML;}
+					if (temp == (comp+comp)){
+					if (i1.innerHTML != comp){i1.innerHTML = comp;}
+					if (i4.innerHTML != comp){i4.innerHTML = comp;}
+					if (i7.innerHTML != comp){i7.innerHTML = comp;}
+					i1.style.background = "red";
+					i4.style.background = "red";
+					i7.style.background = "red";
+					win = true;
+					write("Вы проиграли!", 1); return;
+					}
+					temp = "";
+					if (i2.innerHTML != ""){temp+=i2.innerHTML;}
+					if (i5.innerHTML != ""){temp+=i5.innerHTML;}
+					if (i8.innerHTML != ""){temp+=i8.innerHTML;}
+					if (temp == (comp+comp)){
+					if (i2.innerHTML != comp){i2.innerHTML = comp;}
+					if (i5.innerHTML != comp){i5.innerHTML = comp;}
+					if (i8.innerHTML != comp){i8.innerHTML = comp;}
+					i2.style.background = "red";
+					i5.style.background = "red";
+					i8.style.background = "red";
+					win = true;
+					write("Вы проиграли!", 1); return;
+					}
+					temp = "";
+					if (i3.innerHTML != ""){temp+=i3.innerHTML;}
+					if (i6.innerHTML != ""){temp+=i6.innerHTML;}
+					if (i9.innerHTML != ""){temp+=i9.innerHTML;}
+					if (temp == (comp+comp)){
+					if (i3.innerHTML != comp){i3.innerHTML = comp;}
+					if (i6.innerHTML != comp){i6.innerHTML = comp;}
+					if (i9.innerHTML != comp){i9.innerHTML = comp;}
+					i3.style.background = "red";
+					i6.style.background = "red";
+					i9.style.background = "red";
+					win = true;
+					write("Вы проиграли!", 1); return;
+					}
+					temp = "";
+					if (i1.innerHTML != ""){temp+=i1.innerHTML;}
+					if (i5.innerHTML != ""){temp+=i5.innerHTML;}
+					if (i9.innerHTML != ""){temp+=i9.innerHTML;}
+					if (temp == (comp+comp)){
+					if (i1.innerHTML != comp){i1.innerHTML = comp;}
+					if (i5.innerHTML != comp){i5.innerHTML = comp;}
+					if (i9.innerHTML != comp){i9.innerHTML = comp;}
+					i1.style.background = "red";
+					i5.style.background = "red";
+					i9.style.background = "red";
+					win = true;
+					write("Вы проиграли!", 1); return;
+					}
+					temp = "";
+					if (i7.innerHTML != ""){temp+=i7.innerHTML;}
+					if (i5.innerHTML != ""){temp+=i5.innerHTML;}
+					if (i3.innerHTML != ""){temp+=i3.innerHTML;}
+					if (temp == (comp+comp)){
+					if (i7.innerHTML != comp){i7.innerHTML = comp;}
+					if (i5.innerHTML != comp){i5.innerHTML = comp;}
+					if (i3.innerHTML != comp){i3.innerHTML = comp;}
+					i7.style.background = "red";
+					i5.style.background = "red";
+					i3.style.background = "red";
+					win = true;
+					write("Вы проиграли!", 1); return;
+					}
+					temp = "";
+					check_comp();
+				}
+				function check_comp(){
+					var temp = "";
+										if (i5.innerHTML != ""){temp+=i5.innerHTML;}
+					if (i9.innerHTML != ""){temp+=i9.innerHTML;}
+					if (temp == (user+user)){
+					if (i1.innerHTML != user){i1.innerHTML = comp;}
+					if (i5.innerHTML != user){i5.innerHTML = comp;}
+					if (i9.innerHTML != user){i9.innerHTML = comp;}
+					return;
+					}
+					temp = "";
+					if (i7.innerHTML != ""){temp+=i7.innerHTML;}
+					if (i5.innerHTML != ""){temp+=i5.innerHTML;}
+					if (i3.innerHTML != ""){temp+=i3.innerHTML;}
+					if (temp == (user+user)){
+					if (i7.innerHTML != user){i7.innerHTML = comp;}
+					if (i5.innerHTML != user){i5.innerHTML = comp;}
+					if (i3.innerHTML != user){i3.innerHTML = comp;}
+					return;
+					}
+					temp = "";
+					if (i1.innerHTML != ""){temp+=i1.innerHTML;}
+					if (i2.innerHTML != ""){temp+=i2.innerHTML;}
+					if (i3.innerHTML != ""){temp+=i3.innerHTML;}
+					if (temp == (user+user)){
+					if (i1.innerHTML != user){i1.innerHTML = comp;}
+					if (i2.innerHTML != user){i2.innerHTML = comp;}
+					if (i3.innerHTML != user){i3.innerHTML = comp;}
+					return;
+					}
+					temp = "";
+					if (i4.innerHTML != ""){temp+=i4.innerHTML;}
+					if (i5.innerHTML != ""){temp+=i5.innerHTML;}
+					if (i6.innerHTML != ""){temp+=i6.innerHTML;}
+					if (temp == (user+user)){
+					if (i4.innerHTML != user){i4.innerHTML = comp;}
+					if (i5.innerHTML != user){i5.innerHTML = comp;}
+					if (i6.innerHTML != user){i6.innerHTML = comp;}
+					return;
+					}
+					temp = "";
+					if (i7.innerHTML != ""){temp+=i7.innerHTML;}
+					if (i8.innerHTML != ""){temp+=i8.innerHTML;}
+					if (i9.innerHTML != ""){temp+=i9.innerHTML;}
+					if (temp == (user+user)){
+					if (i7.innerHTML != user){i7.innerHTML = comp;}
+					if (i8.innerHTML != user){i8.innerHTML = comp;}
+					if (i9.innerHTML != user){i9.innerHTML = comp;}
+					return;
+					}
+					temp = "";
+					if (i1.innerHTML != ""){temp+=i1.innerHTML;}
+					if (i4.innerHTML != ""){temp+=i4.innerHTML;}
+					if (i7.innerHTML != ""){temp+=i7.innerHTML;}
+					if (temp == (user+user)){
+					if (i1.innerHTML != user){i1.innerHTML = comp;}
+					if (i4.innerHTML != user){i4.innerHTML = comp;}
+					if (i7.innerHTML != user){i7.innerHTML = comp;}
+					return;
+					}
+					temp = "";
+					if (i2.innerHTML != ""){temp+=i2.innerHTML;}
+					if (i5.innerHTML != ""){temp+=i5.innerHTML;}
+					if (i8.innerHTML != ""){temp+=i8.innerHTML;}
+					if (temp == (user+user)){
+					if (i2.innerHTML != user){i2.innerHTML = comp;}
+					if (i5.innerHTML != user){i5.innerHTML = comp;}
+					if (i8.innerHTML != user){i8.innerHTML = comp;}
+					return;
+					}
+					temp = "";
+					if (i3.innerHTML != ""){temp+=i3.innerHTML;}
+					if (i6.innerHTML != ""){temp+=i6.innerHTML;}
+					if (i9.innerHTML != ""){temp+=i9.innerHTML;}
+					if (temp == (user+user)){
+					if (i3.innerHTML != user){i3.innerHTML = comp;}
+					if (i6.innerHTML != user){i6.innerHTML = comp;}
+					if (i9.innerHTML != user){i9.innerHTML = comp;}
+					return;
+					}
+					temp = "";
+					if (i1.innerHTML != ""){temp+=i1.innerHTML;}
+
+					random();
+				}
+					
+				function random(){
+					console.log("Проверка углов и центра");
+					if (i5.innerHTML == ""){
+						i5.innerHTML = comp;
+						return;
+					}
+					if (i1.innerHTML == ""){
+						i1.innerHTML = comp;
+						return;
+					}
+					if (i3.innerHTML == ""){
+						i3.innerHTML = comp;
+						return;
+					}
+					if (i7.innerHTML == ""){
+						i7.innerHTML = comp;
+						return;
+					}
+					if (i9.innerHTML == ""){
+						i9.innerHTML = comp;
+						return;
+					}
+					console.log("Рандом");
+					var id = 'i'+(Math.floor(Math.random() * (9 - 1)) + 1);
+					console.log(id);
+					if (document.getElementById(id).innerHTML == ""){
+						document.getElementById(id).innerHTML = comp;
+						check_null();
+					}else{
+						random();
+					}
+				}
+				function check_null(){
+					if (i1.innerHTML != "" & i2.innerHTML != "" & i3.innerHTML != "" & i4.innerHTML != "" & i5.innerHTML != "" & i6.innerHTML != "" & i7.innerHTML != "" & i8.innerHTML != "" & i9.innerHTML != ""){
+						write("Ничья!");
+						win = true;
+						setTimeout(function(){document.location.href = document.location.href;}, 3000);
+					}
+				}
+				function write_user(item){
+					check_null();
+					if (win){
+						if (item.innerHTML == ""){
+						item.style.background = "red";
+						setTimeout(function(){
+						item.style.background = "white";}, 100);}
+						return;}
+					if (item.innerHTML == ""){
+					item.innerHTML = user;
+					check_null();
+					check_user();
+					}else{
+						item.style.background = "red";
+						setTimeout(function(){
+						item.style.background = "white";}, 100);
+					}
+				}
+			</script>
+	</body>
+</html>

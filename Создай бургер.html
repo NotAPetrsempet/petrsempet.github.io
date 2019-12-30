@@ -1,0 +1,50 @@
+<style>
+	@keyframes move{
+	from{
+	left: 0px;
+	top: 0px;
+	}
+	to{
+	left: 652px;
+	top: 489px;
+	}
+	}
+	.hide{
+	display: none;
+	position: absolute;
+	}
+</style>
+<img class="hide" id="anim">
+<center>
+<img src="chesse.png" onclick="new_obj(this)"><br><br><br>
+<img src="salat.png" onclick="new_obj(this)"><br><br><br>
+<img src="ketchup.png" onclick="new_obj(this)"><br><br><br>
+<img src="beef.png" onclick="new_obj(this)"><br><br><br>
+<img src="tomato.png" onclick="new_obj(this)"><br><br><br>
+<img src="onion.png" onclick="new_obj(this)"><br><br><br>
+<img src="sosiska.png" id="sos" onclick="new_obj(this)">
+
+<hr></hr>
+<hr></hr>
+<div id="burger">
+<img src="bulochka_v.png">
+<div id="nachinka"></div>
+<img src="bulochka_n.png">
+</div>
+<button onclick="photo()">Сохранить</button>
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
+<script>
+var can = "";
+window.onload = function(){burger.width = sos.width; console.log('Я родился');};
+	function new_obj(obj){
+		var audio = new Audio('https://d1490khl9dq1ow.cloudfront.net/audio/sfx/mp3preview/BsTwCwBHBjzwub4i4/knife-sharpen_f1_bZ9Vu_NWM.mp3');
+		audio.play();
+		anim.src = obj.src;
+		anim.style.display = 'block';
+		anim.style.animation = 'move 3s';
+		setTimeout(function(){anim.style.display = 'none'; nachinka.innerHTML += '<img src="'+obj.src+'"><br>';}, 3000);
+	}
+	function photo(){
+		html2canvas(burger).then(function (canvas){can = document.body.appendChild(canvas); can.style.display = 'none'; document.body.innerHTML += '<a id="a" href="'+can.toDataURL()+'" style="display: none;" title="Мой бургер" download></a>';a.click();})
+	}
+</script>
