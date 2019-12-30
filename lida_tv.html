@@ -1,5 +1,5 @@
 <i id="logo" style="position: absolute; left: 10px;">Лидия ТВ</i>
 <video style="background: red;" id="vid"></video>
 <script>
-	navigator.getUserMedia({audio: true, video: true}, function (stream){vid.srcObject = stream; logo.style.top = vid.videoHeight + 'px';}, function(){});
+	navigator.getUserMedia({audio: true, video: true}, function (stream){vid.srcObject = stream; vid.play(); logo.style.top = vid.videoHeight + 'px';}, function(){alert('Ошибка');});
 </script>
