@@ -1,0 +1,36 @@
+<center>
+	<h1 id="primer"></h1>
+	<h3 id="otv"></h3>
+	<button onclick="next()">Далее</button>
+</center>
+<script>
+	var invalid = false;
+	var last_otv = 0;
+	var rec = new webkitSpeechRecognition();
+	var ans = false;
+	function next(){
+		var slag_1 = Math.floor(Math.random() * (1 - 10)) + 10;
+		var slag_2 = Math.floor(Math.random() * (1 - 10)) + 10;
+		if (!invalid){
+		speechSynthesis.speak(new SpeechSynthesisUtterance('Сколько будет '+slag_1+'+'+slag_2+'?'));
+		}else{
+		speechSynthesis.speak(new SpeechSynthesisUtterance('Неправильно! Правильный ответ - '+last_otv+'! Сколько будет '+slag_1+'+'+slag_2+'?'));
+		}
+		setTimeout(function(){primer.innerHTML = slag_1 + '+' + slag_2;
+		rec.start(); ans = false;}, 2000);
+		rec.onend = function(){if (!ans){next();}};
+		rec.onresult = function(res){
+			var result = res.result[res.resultsIndex];
+			ans = true;
+			otv.innerHTML = result[0].transcription;
+			if (parseInt(result[0].transcription) == slag_1+slag_2){
+				invalid = false;
+				speechSynthesis.speak(new SpeechSynthesisUtterance('Правильно! Нажми кнопку "Далее"'));
+			}else{
+				invalid = true;
+				last_otv = slag_1 + slag_2;
+				next();
+			}
+		}
+	}
+</script>
