@@ -2,13 +2,14 @@
 <i id="target" style="position: absolute; border-radius: 100%; width:15px; height:15px; background:red;"></i>
 <script>
 	if(DeviceOrientationEvent){
-		console.log('hhh');
 		window.addEventListener('deviceorientation', handler, false);
 	}else{
 		console.log('hh');
+		alert('ekhay');
 		document.location.href = "https://yandex.ru";
 	}
 	function handler(event){
+		alert(' ');
 		player.style.left = event.alpha + 'px';
 		player.style.top = event.beta + 'px';
 	}
