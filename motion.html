@@ -1,8 +1,8 @@
 <div id="motion" style="width: 50px; height: 50px; position:absolute; background: red;"></div>
 <script>
     alert('Hiai!');
-if (window.DeviceOrientationEvent) {
-    window.addEventListener('deviceorientation', motion_hook, false);
+if (window.DeviceMotionEvent) {
+    window.addEventListener('devicemotion', motion_hook, false);
 }
 else {
     alert('AAaA');
@@ -10,6 +10,6 @@ else {
  
 // Обработчик события DeviceMotionEvent
 function motion_hook(event) {
-    motion.style.left = event.alpha + 'px';
+    motion.style.left = event.X + 'px';
 }
 </script>
