@@ -1,0 +1,15 @@
+﻿<i id="player" style="position: absolute; border-radius: 100%; width:10px; height:10px; background:green;"></i>
+<i id="target" style="position: absolute; border-radius: 100%; width:15px; height:15px; background:red;"></i>
+<script>
+	if(DeviceOrientationEvent){
+		console.log('hhh');
+		window.addEventListener('deviceorientation', handler, false);
+	}else{
+		console.log('hh');
+		document.location.href = "https://yandex.ru";
+	}
+	function handler(event){
+		player.style.left = event.alpha + 'px';
+		player.style.top = event.beta + 'px';
+	}
+</script>
