@@ -10,7 +10,7 @@ else {
  
 // Обработчик события DeviceMotionEvent
 function motion_hook(event) {
-    motion.style.left = event.X + 'px';
+    motion.style.left = event.accelerationIncludingGravity.x + 'px';
     alert('a');
 }
 </script>
