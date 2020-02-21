@@ -9,26 +9,26 @@
 
         var data = google.visualization.arrayToDataTable([
           ['Label', 'Value'],
-          ['Memory', 80],
-          ['CPU', 55],
-          ['Network', 68]
+          ['Speed', 0],
+          ['Random', 55],
+          ['Random', 68]
         ]);
 
         var options = {
           width: 400, height: 120,
           redFrom: 90, redTo: 100,
           yellowFrom:75, yellowTo: 90,
-          minorTicks: 5
+          minorTicks: 5, maximum:200
         };
 
         var chart = new google.visualization.Gauge(document.getElementById('chart_div'));
 
         chart.draw(data, options);
 
-        setInterval(function() {
-          data.setValue(0, 1, 40 + Math.round(60 * Math.random()));
+        navigator.geolocation.watchPosition(function(event) {
+          data.setValue(0, 1, 40 + (event.coords.speed *60)/1000);
           chart.draw(data, options);
-        }, 13000);
+        }, function(){});
         setInterval(function() {
           data.setValue(1, 1, 40 + Math.round(60 * Math.random()));
           chart.draw(data, options);
