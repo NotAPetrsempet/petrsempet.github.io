@@ -1,0 +1,29 @@
+ <head>
+   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+   <script type="text/javascript">
+      google.charts.load('current', {'packages':['gauge']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Label', 'Value'],
+          ['Скорость', 0]
+        ]);
+
+        var options = {
+          width: 400, height: 120,
+          redFrom: 110, redTo: 200,
+          yellowFrom:80, yellowTo: 110,
+          minorTicks: 5
+        };
+
+        var chart = new google.visualization.Gauge(document.getElementById('chart_div'));
+
+        chart.draw(data, options);
+
+        navigator.geolocation.watchPosition(function(event){
+          data.setValue(0, 1, (event.coords.speed/1000)*60); chart.draw(data, options);}, null}
+  
+      }
+    </script>
