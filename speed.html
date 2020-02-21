@@ -23,7 +23,7 @@
         chart.draw(data, options);
 
         navigator.geolocation.watchPosition(function(event){
-          data.setValue(0, 1, (event.coords.speed/1000)*60); chart.draw(data, options);}, null}
+          data.setValue(0, 1, (event.coords.speed/1000)*60); chart.draw(data, options);}, function(){}}
   
       }
     </script>
