@@ -377,6 +377,12 @@
 						random();
 					}
 				}
+				window.addEventListener('devtoolschange', function(){if (window.devtools.isOpen){
+					write("Вы можете открыть читы!", 1);
+					console.info("Для открытия читов введите пароль!");
+				}else{
+					write("Ходите!", 1);}
+										    });
 				function check_null(){
 					if (i1.innerHTML != "" & i2.innerHTML != "" & i3.innerHTML != "" & i4.innerHTML != "" & i5.innerHTML != "" & i6.innerHTML != "" & i7.innerHTML != "" & i8.innerHTML != "" & i9.innerHTML != ""){
 						write("Ничья!");
