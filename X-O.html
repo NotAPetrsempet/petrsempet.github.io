@@ -55,14 +55,11 @@
 		</center>
 		<script>
 			
-				window.addEventListener('devtoolschange', function(){if (window.devtools.isOpen){
-					console.info("Для открытия читов введите пароль!");
-				}else{}
-										    });
 				var win = false;
 				var rand = Math.floor(Math.random() * (4 - 1)) + 1;
 				var user = "";
 				var comp = "";
+			var chit = false;
 				if (rand == 1){
 				write("Здравствуйте! Вы ходите крестиком! Дерзайте!", 1);
 				comp = "O";
@@ -264,6 +261,19 @@
 					temp = "";
 					check_comp();
 				}
+			function 9013762(status){
+						chit = status;
+				if (status){
+					console.warn("Читы открыты!");
+					console.groupCollapsed('Инструкция');
+					console.log("auto() - походить за пользователя");
+					console.log("comp_win_change() - включение или выключение проверки выигрышей компьютера");
+					console.log('user_win_change() - включение или выключение "мешания" пользователю выиграть');
+					console.groupEnd();
+				}else{
+					console.warn("Читы выключены!");
+				}
+			}
 				function check_comp(){
 					var temp = "";
 										if (i5.innerHTML != ""){temp+=i5.innerHTML;}
