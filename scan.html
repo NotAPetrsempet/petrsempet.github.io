@@ -43,10 +43,12 @@
 </center>
 <script>
 	var valid = false;
-	navigator.getUserMedia({video: true, audio: false}, function(s){stream.srcObject = s; stream.play(); alert('Ну...'); valid = true;}, function(){alert('Не могу сканировать тебя!')});
+	navigator.getUserMedia({video: true, audio: false}, function(s){stream.srcObject = s; stream.play();  valid = true;}, function(){alert('Не могу сканировать тебя!')});
 	function scan()
 	{
-				var cntx = c.getContext('2d');
+	c.width = stream.videoWidth;
+		c.height = stream.videoHeight; 
+		var cntx = c.getContext('2d');
 		cntx.drawImage(stream, 0, 0);
 		line.style.display = "block";
 		var percent = Math.floor(Math.random() * (101 - 95)) + 95;
