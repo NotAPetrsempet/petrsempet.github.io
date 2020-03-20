@@ -3,7 +3,7 @@
 	alert('hi');
 	 // Проверить доступность и назначить обработчик событий датчика ориентации
 if (window.DeviceOrientationEvent) {
-    window.addEventListener('devicemotion', orientation_hook, false);
+    window.addEventListener('deviceorientation', orientation_hook, false);
 }
 else {
     // DeviceOrientationEvent не поддерживается
@@ -12,8 +12,9 @@ else {
  
 // Обработчик события DeviceOrientationEvent
 function orientation_hook(event) {
-	player.style.left = event.accelerationIncludingGravity.x;
-	player.style.top = event.accelerationIncludingGravity.y;
+	player.innerHTML = event.alpha;
+	player.style.left = event.alpha;
+	player.style.top = event.beta;
 }
 
 </script>
