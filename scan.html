@@ -49,7 +49,7 @@
 	c.width = stream.videoWidth;
 		c.height = stream.videoHeight; 
 		var cntx = c.getContext('2d');
-		cntx.drawImage(stream, 0, 0);
+		cntx.drawImage(stream, 0, 0, stream.videoWidth, stream.videoHeight);
 		line.style.display = "block";
 		var percent = Math.floor(Math.random() * (101 - 95)) + 95;
 		setTimeout(function(){result.innerHTML = "Вы похожи на дебила!<br> Совпадение "+percent+'%'; line.style.display = "none";}, 3000);
