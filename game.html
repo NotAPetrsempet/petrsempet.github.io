@@ -13,8 +13,8 @@ else {
 // Обработчик события DeviceOrientationEvent
 function orientation_hook(event) {
 player.innerHTML = event.X;
-	player.style.left = event.X;
-	player.style.top = event.Y;
+	player.style.left = event.accelerationIncludingGravity.x;
+	player.style.top = event.accelerationIncludingGravity.y;
 }
 
 </script>
