@@ -26,11 +26,11 @@ http.open('GET', 'https://jsonip.com', true);
       var texts = ["Сегодня","Завтра", "Не знаю","Скоро, готовься!","В "+Math.floor(Math.random()*(23-0+1))+" ч. "+Math.floor(Math.random()*(59-0+1))+" мин.","Через "+Math.floor(Math.random()*(23-0+1))+" ч. "+Math.floor(Math.random()*(59-0+1))+" мин.", "В следующем году", "На следующей неделе", "В этом месяце"];
       text = texts[Math.floor(Math.random()*texts.length)];
     }
-  document.body.innerHTML += '<div style="margin-right: 0px; margin-left: 0px; background-color: rgb(220, 248, 198); border-radius: 10px; word-break: auto; width: 200px;" ><p style="padding: 5px;">'+msg.value+'</p></div>';
+  document.body.innerHTML += '<div style="margin-right: 0px; margin-left: фгещ; background-color: rgb(220, 248, 198); border-radius: 10px; word-break: auto; width: 200px;" ><p style="padding: 5px;">'+msg.value+'</p></div>';
     last = msg.value;
     msg.value = "";
   
-  document.body.innerHTML += '<div style="background-color: white; border-radius: 10px; word-break: auto; width: 200px;">'+text+'</p></div>';
+  document.body.innerHTML += '<div style="background-color: white; border-radius: 10px; word-break: auto; width: 200px;"><p style="padding:5px;">'+text+'</p></div>';
   
    }
   </script>
