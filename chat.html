@@ -1,5 +1,7 @@
 <title>Спроси у мага</title>
 <body style="background-color: lightgray;">
+  
+  <div style="height: 90px; background-color: white; position: fixed; bottom: 0px; left: 0px;" id="block"></div>
 <script>
   block.style.width = window.innerWidth+"px";
   var http = http = new XMLHttpRequest();
@@ -8,5 +10,4 @@ http.open('GET', 'https://jsonip.com');
   var ip = JSON.parse(http.responseText).ip;
   document.body.innerHTML += '<div style="background-color: white; border-radius: 10px; word-break: auto; width: 200px;"><p style="padding: 5px;">Привет, '+ip+'! Меня зовут Маг. А как тебя зовут?</p></div>';
   </script>
-  <div style="height: 90px; background-color: white; position: fixed; bottom: 0px; left: 0px;" id="block"></div>
 </body>
