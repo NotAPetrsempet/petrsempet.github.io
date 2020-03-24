@@ -5,6 +5,6 @@
 http.open('GET', 'https://jsonip.com');
   http.send();
   var ip = "1.2.3.4"/*JSON.parse(http.responseText).ip*/;
-  document.body.innerHTML += '<div style="background-color: white; border-radius: 50%;"><p>Привет, '+ip+'! Меня зовут Маг. А как тебя зовут?</p></div>';
+  document.body.innerHTML += '<div style="background-color: white; border-radius: 10%; word-break: auto; width: 80px;"><p>Привет, '+ip+'! Меня зовут Маг. А как тебя зовут?</p></div>';
   </script>
 </body>
