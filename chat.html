@@ -16,10 +16,20 @@ http.open('GET', 'https://jsonip.com', true);
     }
   }
   http.send();
+  var last = "";
   function send(){
     if (msg.value == ''){return;}
+    var text = "";
+    if (last == msg.value){
+        text = "Давай другое уже!";
+    }else if (msg.value.toLowerCase().IndexOf('когда') != -1){
+      var texts = {"Сегодня","Завтра", "Не знаю","Скоро, готовься!","В "+Math.floor(Math.random()*(23-0+1))+" ч. "+Math.floor(Math.random()*(59-0+1))+" мин.","Через "+Math.floor(Math.random()*(23-0+1))+" ч. "+Math.floor(Math.random()*(59-0+1))+" мин.", "В следующем году", "На следующей неделе", "В этом месяце"};
+      text = texts[Math.floor(Math.random()*(texts.Length-0+1))];
+    }
   document.body.innerHTML += '<div style="background-color: rgb(220, 248, 198); border-radius: 10px; word-break: auto; width: 200px;" align="right"><p style="padding: 5px;">'+msg.value+'</p></div>';
     msg.value = "";
+  
+  document.body.innerHTML += '<div style="background-color: white; border-radius: 10px; word-break: auto; width: 200px;">'+text+'</p></div>';
   
    }
   </script>
