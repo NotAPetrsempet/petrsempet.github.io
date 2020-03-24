@@ -1,7 +1,7 @@
 <title>Спроси у мага</title>
 <body style="background-color: lightgray;">
   
-  <div style="height: 90px; background-color: white; position: fixed; bottom: 0px; left: 0px; word-break: auto;" id="block"><input style="word-break: auto; font-size: 14px; padding:10px; border-radius: 10px; width: 300px;" placeholder="Введите сообщение..."><button style="background-color: lightgreen; left-padding: 10px; height: 40px; border-radius: 10px;" onclick="send()">Отправить</button></div>
+  <div style="height: 90px; background-color: white; position: fixed; bottom: 0px; left: 0px; word-break: auto;" id="block"><input id="msg" style="word-break: auto; font-size: 14px; padding:10px; border-radius: 10px; width: 300px;" placeholder="Введите сообщение..."><button style="background-color: lightgreen; left-padding: 10px; height: 40px; border-radius: 10px;" onclick="send()">Отправить</button></div>
 <script>
   var name = "";
   block.style.width = window.innerWidth+"px";
@@ -16,5 +16,10 @@ http.open('GET', 'https://jsonip.com', true);
     }
   }
   http.send();
+  function send(){
+  document.body.innerHTML += '<div style="background-color: #07bc4c; border-radius: 10px; word-break: auto; width: 200px; align: left;"><p style="padding: 5px;">'+msg.value+'</p></div>';
+    msg.value = "";
+  
+   }
   </script>
 </body>
