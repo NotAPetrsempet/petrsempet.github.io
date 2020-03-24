@@ -42,7 +42,22 @@ http.open('GET', 'https://jsonip.com', true);
       var texts = ["Красивый","Отличный", "Хороший","Добрый","Красный","Голубой", "Жёлтый", "Чёткий", "Прекрасный"];
       text = texts[Math.floor(Math.random()*texts.length)];
     }else if (msg.value.toLowerCase().indexOf('кто я') != -1){
-      text = '<img width="154" height="180" src="https://memepedia.ru/wp-content/uploads/2020/01/hto-ja.png">';
+      text = '<img width="180" height="154" src="https://memepedia.ru/wp-content/uploads/2020/01/hto-ja.png">';
+    }else if (msg.value.toLowerCase().indexOf('какая') != -1){
+      var texts = ["Красивая","Отличная", "Хорошая","Добрая","Красная","Голубая", "Жёлтая", "Чёткая", "Прекрасная"];
+      text = texts[Math.floor(Math.random()*texts.length)];
+    }else if (msg.value.toLowerCase().indexOf('какое') != -1){
+      var texts = ["Красивое","Отличное", "Хорошое","Доброе","Красное","Голубое", "Жёлтое", "Чёткое", "Прекрасное", "Полезное"];
+      text = texts[Math.floor(Math.random()*texts.length)];
+    }else if (msg.value.toLowerCase().indexOf('как дела') != -1){
+      var texts = ["Нормально","Отлично", "Не плохо","Хорошо","Прекрасно","Не очень", "Плохо", "В натуре", "Класс"];
+      text = texts[Math.floor(Math.random()*texts.length)];
+    }else if (msg.value.toLowerCase() == 'правда?'){
+      text = 'Конечно! Я всегда говорю только правду!';
+    }else if (msg.value.toLowerCase() == 'о программе'){
+      text = '© Семендилов П. С. 2020 г. Ответы, выданные данной программой получены случайным способ и не являются офертой. Программа написана на JavaScript и HTML.';
+    }else if (msg.value.toLowerCase().indexOf('неправда') != -1 || msg.value.toLowerCase().indexOf('не правда') != -1){
+      text = 'Ответы, выданные данной программой получены случайным способ и не являются офертой.';
     }
     }
   document.body.innerHTML += '<div style="margin-right: 0px; margin-left: auto; background-color: rgb(220, 248, 198); border-radius: 10px; word-break: auto; width: 200px;" ><p style="padding: 5px;">'+msg.value+'</p></div>';
