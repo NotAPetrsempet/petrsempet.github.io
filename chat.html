@@ -1,5 +1,10 @@
 <title>Спроси у мага</title>
 <body style="background-color: lightgray;">
-<script type="text/javascript"
-src="http://ip-jobs.staff-base.spb.ru/ip.cgi"></script>
+<script>
+  var http = http = new XMLHttpRequest();
+http.open('GET', 'https://jsonip.com');
+  http.send();
+  var ip = JSON.parse(http.responseText).ip;
+  document.body.innerHTML += '<div style="background-color: white; border-radius: 50%;"><p>Привет, '+ip+'! Меня зовут Маг. А как тебя зовут?</p></div>';
+  </script>
 </body>
