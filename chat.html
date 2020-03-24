@@ -6,13 +6,13 @@
   block.style.width = window.innerWidth+"px";
   var http = http = new XMLHttpRequest();
 http.open('GET', 'https://jsonip.com', true);
-  http.send();
   var ip ="человек";
   http.onreadystatechange = function(){
     if (this.status == 200 && this.readyState == 4){
   ip = JSON.parse(http.responseText).ip;
     }
   }
+  http.send();
   document.body.innerHTML += '<div style="background-color: white; border-radius: 10px; word-break: auto; width: 200px;"><p style="padding: 5px;">Привет, '+ip+'! Меня зовут Маг. А как тебя зовут?</p></div>';
   </script>
 </body>
