@@ -24,7 +24,7 @@ http.open('GET', 'https://jsonip.com', true);
     var text = "";
     if (check_name){
     if (msg.value.toLowerCase().indexOf('меня зовут') != -1){
-    name = msg.value.substring(msg.value.toLowerCase().indexOf('меня зовут')+7);
+    name = msg.value.substring(msg.value.toLowerCase().indexOf('меня зовут')+11);
       check_name = false;
       text = "Приятно познакомится, "+name+"! Ты можешь задавать мне абсолютно любые вопросы и я на них обязательно отвечу!";
       isName = true;
@@ -38,12 +38,17 @@ http.open('GET', 'https://jsonip.com', true);
     }else if (msg.value.toLowerCase().indexOf('когда') != -1){
       var texts = ["Сегодня","Завтра", "Не знаю","Скоро, готовься!","В "+Math.floor(Math.random()*(23-0+1))+" ч. "+Math.floor(Math.random()*(59-0+1))+" мин.","Через "+Math.floor(Math.random()*(23-0+1))+" ч. "+Math.floor(Math.random()*(59-0+1))+" мин.", "В следующем году", "На следующей неделе", "В этом месяце"];
       text = texts[Math.floor(Math.random()*texts.length)];
+    }else if (msg.value.toLowerCase().indexOf('какой') != -1){
+      var texts = ["Красивый","Отличный", "Хороший","Добрый","Красный","Голубой", "Жёлтый", "Чёткий", "Прекрасный"];
+      text = texts[Math.floor(Math.random()*texts.length)];
+    }else if (msg.value.toLowerCase().indexOf('кто я') != -1){
+      text = '<img src="https://memepedia.ru/wp-content/uploads/2020/01/hto-ja.png">';
     }
     }
   document.body.innerHTML += '<div style="margin-right: 0px; margin-left: auto; background-color: rgb(220, 248, 198); border-radius: 10px; word-break: auto; width: 200px;" ><p style="padding: 5px;">'+msg.value+'</p></div>';
     last = msg.value;
     msg.value = "";
-  if (Math.floor(Math.random()*(1-0+1)) == 1 & name != "" & !isName){
+  if (Math.floor(Math.random()*(100-0+1)) >70 & name != "" & !isName){
       text = name + ', '+text.toLowerCase();
       }    
   document.body.innerHTML += '<div style="background-color: white; border-radius: 10px; word-break: auto; width: 200px;"><p style="padding:5px;">'+text+'</p></div>';
