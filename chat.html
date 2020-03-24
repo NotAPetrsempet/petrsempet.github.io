@@ -24,7 +24,7 @@ http.open('GET', 'https://jsonip.com', true);
     var text = "";
     if (check_name){
     if (msg.value.toLowerCase().indexOf('меня зовут') != -1){
-    name = msg.value.substring(msg.value.toLowerCase().indexOf('меня зовут')+2);
+    name = msg.value.substring(msg.value.toLowerCase().indexOf('меня зовут')+7);
       check_name = false;
       text = "Приятно познакомится, "+name+"! Ты можешь задавать мне абсолютно любые вопросы и я на них обязательно отвечу!";
       isName = true;
