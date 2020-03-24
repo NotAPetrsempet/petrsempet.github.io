@@ -24,7 +24,7 @@ http.open('GET', 'https://jsonip.com', true);
         text = "Давай другое уже!";
     }else if (msg.value.toLowerCase().indexOf('когда') != -1){
       var texts = ["Сегодня","Завтра", "Не знаю","Скоро, готовься!","В "+Math.floor(Math.random()*(23-0+1))+" ч. "+Math.floor(Math.random()*(59-0+1))+" мин.","Через "+Math.floor(Math.random()*(23-0+1))+" ч. "+Math.floor(Math.random()*(59-0+1))+" мин.", "В следующем году", "На следующей неделе", "В этом месяце"];
-      text = texts[Math.floor(Math.random()*(texts.Length-0+1))];
+      text = texts[Math.floor(Math.random()*texts.Length)];
     }
   document.body.innerHTML += '<div style="margin-right: 0px; margin-left: 0px; background-color: rgb(220, 248, 198); border-radius: 10px; word-break: auto; width: 200px;" ><p style="padding: 5px;">'+msg.value+'</p></div>';
     msg.value = "";
