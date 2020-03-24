@@ -5,7 +5,7 @@
 <script>
   block.style.width = window.innerWidth+"px";
   var http = http = new XMLHttpRequest();
-http.open('GET', 'https://jsonip.com');
+http.open('GET', 'https://jsonip.com', true);
   http.send();
   var ip ="человек";
   http.onreadystatechange = function(){
