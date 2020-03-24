@@ -7,7 +7,6 @@
   var http = http = new XMLHttpRequest();
 http.open('GET', 'https://jsonip.com');
   http.send();
-  var ip = JSON.parse(http.responseText).ip;
-  document.body.innerHTML += '<div style="background-color: white; border-radius: 10px; word-break: auto; width: 200px;"><p style="padding: 5px;">Привет, '+ip+'! Меня зовут Маг. А как тебя зовут?</p></div>';
+  document.body.innerHTML += '<div style="background-color: white; border-radius: 10px; word-break: auto; width: 200px;"><p style="padding: 5px;">Привет, '+JSON.parse(http.responseText).ip+'! Меня зовут Маг. А как тебя зовут?</p></div>';
   </script>
 </body>
