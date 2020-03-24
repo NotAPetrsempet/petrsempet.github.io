@@ -22,7 +22,7 @@ http.open('GET', 'https://jsonip.com', true);
     var text = "";
     if (last == msg.value){
         text = "Давай другое уже!";
-    }else if (msg.value.toLowerCase().IndexOf('когда') != -1){
+    }else if (msg.value.toLowerCase().indexOf('когда') != -1){
       var texts = ["Сегодня","Завтра", "Не знаю","Скоро, готовься!","В "+Math.floor(Math.random()*(23-0+1))+" ч. "+Math.floor(Math.random()*(59-0+1))+" мин.","Через "+Math.floor(Math.random()*(23-0+1))+" ч. "+Math.floor(Math.random()*(59-0+1))+" мин.", "В следующем году", "На следующей неделе", "В этом месяце"];
       text = texts[Math.floor(Math.random()*(texts.Length-0+1))];
     }
