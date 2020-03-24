@@ -9,7 +9,7 @@ http.open('GET', 'https://jsonip.com');
   http.send();
   var ip ="человек";
   http.onreadystatechange = function(){
-    if (this.status == 200){
+    if (this.status == 200 & this.readyState == 4){
   ip = JSON.parse(http.responseText).ip;
     }
   }
