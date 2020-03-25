@@ -24,7 +24,7 @@ http.open('GET', 'https://jsonip.com', true);
   }
   http.send();
   var last = "";
-  
+  var hay = false;
   function send(){
     var isName = false;
     if (msg.value == ''){return;}
@@ -43,6 +43,9 @@ http.open('GET', 'https://jsonip.com', true);
     }else{
     if (last == msg.value){
         text = "Давай другое уже!";
+    }else if(hay){
+      text = "А у меня всё отлично!!!";
+      hay = false;
     }else if (msg.value.toLowerCase().indexOf('когда') != -1){
       var texts = ["Сегодня","Завтра", "Не знаю","Скоро, готовься!","В "+Math.floor(Math.random()*(23-0+1))+" ч. "+Math.floor(Math.random()*(59-0+1))+" мин.","Через "+Math.floor(Math.random()*(23-0+1))+" ч. "+Math.floor(Math.random()*(59-0+1))+" мин.", "В следующем году", "На следующей неделе", "В этом месяце"];
       text = texts[Math.floor(Math.random()*texts.length)];
@@ -71,6 +74,9 @@ http.open('GET', 'https://jsonip.com', true);
       document.cookie = "name="+encodeURIComponent(name)+"; domain=petrsempet.github.io; secure";
       text = "Извини, "+name+"!";
       isName = true;
+    }else if (msg.value.toLowerCase().indexOf('дарова') != -1 || msg.value.toLowerCase().indexOf('привет') != -1){
+      text = 'Как дела?';
+      hay = true;
     }
     }
   document.body.innerHTML += '<div style="margin-right: 0px; margin-left: auto; background-color: rgb(220, 248, 198); border-radius: 10px; word-break: auto; width: 200px;" ><p style="padding: 5px;">'+msg.value+'</p></div>';
