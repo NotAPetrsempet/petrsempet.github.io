@@ -36,7 +36,7 @@ http.open('GET', 'https://jsonip.com', true);
     var cheats = false;
     var isName = false;
     if (msg.value == ''){return;}
-    var txt = ['Да', 'Ага', 'Угу', 'Понятно'];
+    var txt = ['Да', 'Ага', 'Угу', 'Понятно', 'Наверное', 'Не знаю','Нет','Я тоже', 'Тоже самое','+'];
     var text = txt[Math.floor(Math.random()*txt.length)];
     if (check_name){
     if (msg.value.toLowerCase().indexOf('меня зовут') != -1){
@@ -106,6 +106,9 @@ http.open('GET', 'https://jsonip.com', true);
       text = texts[Math.floor(Math.random()*texts.length)];
     }else if (msg.value.toLowerCase().indexOf('зачем') != -1){
       var texts = ["Просто так","Чтобы повечилиться", "Для помощи","Не знаю","Чтобы попить и поесть","Для удовольствия", "Не знаю"];
+      text = texts[Math.floor(Math.random()*texts.length)];
+    }else if (msg.value.toLowerCase().indexOf('давай') != -1){
+      var texts = ["Давай", "Не надо"];
       text = texts[Math.floor(Math.random()*texts.length)];
     }else if (msg.value.toLowerCase().indexOf('в чём смысл жизни') != -1){
       text = 'Общаться со мной и искать смысл жизни)))';
