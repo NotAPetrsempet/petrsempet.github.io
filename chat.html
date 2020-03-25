@@ -25,7 +25,7 @@ http.open('GET', 'https://jsonip.com', true);
     if (msg.value.toLowerCase().indexOf('меня зовут') != -1){
     name = msg.value.substring(msg.value.toLowerCase().indexOf('меня зовут')+11);
       check_name = false;
-      document.cookie = "name="+name+"; domain=petrsempet.github.io; secure";
+      document.cookie = "name="+encodeURIComponent(name)+"; domain=petrsempet.github.io; secure";
       text = "Приятно познакомится, "+name+"! Ты можешь задавать мне абсолютно любые вопросы и я на них обязательно отвечу!";
       alert(document.cookie);
       isName = true;
