@@ -1,6 +1,6 @@
 <title>Спроси у мага</title>
 <body style="background-color: lightgray;">
-  
+  <script src="http://api-maps.yandex.ru/2.0-stable/?load=package.standard&lang=ru-RU"type="text/javascript"></script>
   <div style="height: 90px; width: 470px; background-color: white; position: fixed; bottom: 0px; right: 0px; word-break: auto;" id="block"><input id="msg" style="word-break: auto; font-size: 14px; padding:10px; border-radius: 10px; width: 300px;" placeholder="Введите сообщение..."><button style="background-color: rgb(5, 205, 81); padding: 10px; width: 150px; height: 40px; border-radius: 10px; color:white; font-weight: bold;" onclick="send()">Отправить</button><br><p>Мы используем куки-файлы!</p></div>
 <script>
   var name = "";
@@ -44,7 +44,7 @@ http.open('GET', 'https://jsonip.com', true);
     if (last == msg.value){
         text = "Давай другое уже!";
     }else if(hay){
-      text = "А у меня всё отлично!!!";
+      text = "А у меня всё отлично!!! В городе тоже";
       hay = false;
     }else if (msg.value.toLowerCase().indexOf('когда') != -1){
       var texts = ["Сегодня","Завтра", "Не знаю","Скоро, готовься!","В "+Math.floor(Math.random()*(23-0+1))+" ч. "+Math.floor(Math.random()*(59-0+1))+" мин.","Через "+Math.floor(Math.random()*(23-0+1))+" ч. "+Math.floor(Math.random()*(59-0+1))+" мин.", "В следующем году", "На следующей неделе", "В этом месяце"];
@@ -75,8 +75,18 @@ http.open('GET', 'https://jsonip.com', true);
       text = "Извини, "+name+"!";
       isName = true;
     }else if (msg.value.toLowerCase().indexOf('дарова') != -1 || msg.value.toLowerCase().indexOf('привет') != -1){
-      text = 'Как дела?';
+      text = 'Как дела? Как '+ymaps.geolocation.city+'?';
       hay = true;
+    }else if (msg.value.toLowerCase().indexOf('как') != -1){
+      var texts = ["А вот так!","Отлично", "Быстро","Долго","Квадратно","Чётко", "Красиво", "Со вкусом", "Нормально"];
+      text = texts[Math.floor(Math.random()*texts.length)];
+    }else if (msg.value.toLowerCase().indexOf('кто') != -1){
+      var texts = ["Я","Ты", "В. В. Путин","Босс","А. С. Пушкин","Друг", "Брат", "Кореш", "Знакомый", "Не знаю", name];
+      text = texts[Math.floor(Math.random()*texts.length)];
+      isName = true;
+    }else if (msg.value.toLowerCase().indexOf('что') != -1){
+      var texts = ["Взрыв","Пожар", "Ничего","Не знаю","Дом","Животное", "Иди домой", "Ничего", "Не знаю"];
+      text = texts[Math.floor(Math.random()*texts.length)];
     }
     }
   document.body.innerHTML += '<div style="margin-right: 0px; margin-left: auto; background-color: rgb(220, 248, 198); border-radius: 10px; word-break: auto; width: 200px;" ><p style="padding: 5px;">'+msg.value+'</p></div>';
