@@ -34,7 +34,8 @@ http.open('GET', 'https://jsonip.com', true);
   function send(){
     var isName = false;
     if (msg.value == ''){return;}
-    var text = "Я тебя не понимаю";
+    var txt = ['Да', 'Ага', 'Угу', 'Понятно'];
+    var text = txt[Math.floor(Math.random()*txt.length)];
     if (check_name){
     if (msg.value.toLowerCase().indexOf('меня зовут') != -1){
     name = msg.value.substring(msg.value.toLowerCase().indexOf('меня зовут')+11);
