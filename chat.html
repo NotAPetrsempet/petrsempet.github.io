@@ -109,6 +109,8 @@ http.open('GET', 'https://jsonip.com', true);
       text = 'Общаться со мной и искать смысл жизни)))';
     }else if (msg.value.toLowerCase().indexOf('сколько') != -1){
       text = Math.floor(Math.random()*1001);
+    }else if (msg.value.toLowerCase().indexOf(')') != -1){
+      text = ")))))";
     }else if (msg.value.toLowerCase().indexOf('?') != -1){
       var texts = ["Да","Не знаю", "Нет"];
       text = texts[Math.floor(Math.random()*texts.length)];
