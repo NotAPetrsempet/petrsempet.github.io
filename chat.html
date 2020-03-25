@@ -34,7 +34,7 @@ http.open('GET', 'https://jsonip.com', true);
   function send(){
     var isName = false;
     if (msg.value == ''){return;}
-    var text = "";
+    var text = "Я тебя не понимаю";
     if (check_name){
     if (msg.value.toLowerCase().indexOf('меня зовут') != -1){
     name = msg.value.substring(msg.value.toLowerCase().indexOf('меня зовут')+11);
@@ -106,7 +106,7 @@ http.open('GET', 'https://jsonip.com', true);
       text = 'Общаться со мной и искать смысл жизни)))';
     }else if (msg.value.toLowerCase().indexOf('сколько') != -1){
       text = Math.floor(Math.random()*1001);
-    }else{
+    }else if (msg.value.toLowerCase().indexOf('?') != -1){
       var texts = ["Да","Не знаю", "Нет"];
       text = texts[Math.floor(Math.random()*texts.length)];
     }
