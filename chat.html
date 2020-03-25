@@ -85,7 +85,7 @@ http.open('GET', 'https://jsonip.com', true);
       text = texts[Math.floor(Math.random()*texts.length)];
       isName = true;
     }else if (msg.value.toLowerCase().indexOf('что') != -1){
-      var texts = ["Взрыв","Пожар", "Ничего","Не знаю","Дом","Животное", "Иди домой", "Ничего", "Не знаю"];
+      var texts = ["Взрыв","Пожар", "Ничего","Не знаю","Дом","Животное", "Иди домой", "Ничего", "Не знаю", "Да"];
       text = texts[Math.floor(Math.random()*texts.length)];
     }else if (msg.value.toLowerCase().indexOf('где') != -1){
       var texts = ["Не знаю","Там", "Здесь","В школе","На работе","Дома", "В парке", "За компом", "В телефоне"];
@@ -94,7 +94,10 @@ http.open('GET', 'https://jsonip.com', true);
       var texts = ["Потому","По качану", "Из-за взрыва","Из-за законов","Из-за возраста","Из-за интернета", "Не скажу", "Из-за карантина", "Из-зи коронавируса"];
       text = texts[Math.floor(Math.random()*texts.length)];
     }else if (msg.value.toLowerCase().indexOf('зачем') != -1){
-      var texts = ["Просто так","Чтобы повечилиться", "Для помощи","Не знаю","Чтобы попить и поесть","Животное", "Иди домой", "Ничего", "Не знаю"];
+      var texts = ["Просто так","Чтобы повечилиться", "Для помощи","Не знаю","Чтобы попить и поесть","Для удовольствия", "Не знаю"];
+      text = texts[Math.floor(Math.random()*texts.length)];
+    }else{
+      var texts = ["Да","Не знаю", "Нет"];
       text = texts[Math.floor(Math.random()*texts.length)];
     }
     }
