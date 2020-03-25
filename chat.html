@@ -96,6 +96,8 @@ http.open('GET', 'https://jsonip.com', true);
     }else if (msg.value.toLowerCase().indexOf('зачем') != -1){
       var texts = ["Просто так","Чтобы повечилиться", "Для помощи","Не знаю","Чтобы попить и поесть","Для удовольствия", "Не знаю"];
       text = texts[Math.floor(Math.random()*texts.length)];
+    }else if (msg.value.toLowerCase().indexOf('в чём смысл жизни') != -1){
+      text = 'Общаться со мной и искать смысл жизни)))';
     }else{
       var texts = ["Да","Не знаю", "Нет"];
       text = texts[Math.floor(Math.random()*texts.length)];
