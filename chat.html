@@ -24,11 +24,11 @@ http.open('GET', 'https://jsonip.com', true);
     if (this.status == 200 && this.readyState == 4){
   ip = JSON.parse(http.responseText).ip;
       if (document.cookie == ""){
-  document.body.innerHTML += '<div style="background-color: white; border-radius: 10px; word-break: auto; width: 200px;"><p style="padding: 5px;">Привет, '+ip+'! Меня зовут Маг. А как тебя зовут?</p></div>';
+  document.body.innerHTML += '<div style="background-color: white; border-radius: 10px; word-break: auto; width: 200px;"><p onclick="say(this.innerHTML)" style="padding: 5px;">Привет, '+ip+'! Меня зовут Маг. А как тебя зовут?</p></div>';
       say('Привет, '+ip+'! Меня зовут Маг. А как тебя зовут?');
       }else{
       
-  document.body.innerHTML += '<div style="background-color: white; border-radius: 10px; word-break: auto; width: 200px;"><p style="padding: 5px;">Привет, '+decodeURI(document.cookie.substring(5))+'!</p></div>';
+  document.body.innerHTML += '<div style="background-color: white; border-radius: 10px; word-break: auto; width: 200px;"><p onclick="say(this.innerHTML)" style="padding: 5px;">Привет, '+decodeURI(document.cookie.substring(5))+'!</p></div>';
         check_name=false;
         name = decodeURI(document.cookie.substring(5));
         say('Привет, '+name+'!');
@@ -141,7 +141,7 @@ http.open('GET', 'https://jsonip.com', true);
       text = name + ', '+text.toLowerCase();
       }    
     }
-  document.body.innerHTML += '<div style="background-color: white; border-radius: 10px; word-break: auto; width: 200px;"><p style="padding:5px;">'+text+'</p></div>';
+  document.body.innerHTML += '<div style="background-color: white; border-radius: 10px; word-break: auto; width: 200px;"><p onclick="say(this.innerHTML)" style="padding:5px;">'+text+'</p></div>';
   say(text);
    }
   
