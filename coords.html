@@ -1,0 +1,6 @@
+<pre id="coords">
+{"lat":"null", "lon":"null"}
+</pre>
+<script>
+navigator.geolocation.getCurrentPosition(function(event){coords.innerHTML='{"lat":"'+event.coords.latitude+'", "lon":"'+event.coords.longitude+'"}'})
+</script>
