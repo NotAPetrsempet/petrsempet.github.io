@@ -2,7 +2,7 @@
 
 <html>
 <head>
-    <title>Определение организации</title>
+    <title>Конструктор запросов</title>
     <style>
         .placeholder::-webkit-input-placeholder{color: #57b0ff;}
         .in{
@@ -25,16 +25,17 @@
         function send(){
             http.open(method.value, adress.value);
             result.innerHTML = 'curl -X '+method.value+' \<br>';
-            var json = JSON.parse(headers.innerHTML);
-            var i = -1;
-            for (i < json.headers.length; i++;){
-                var str = JSON.stringify(json.headers[i]);
-                var name = str.substring(2, str.indexOf(':')-1);
-                var val = json.headers[i][str.substring(2, str.indexOf(':')-1)];
-                http.setRequestHeader(name, val);
-                result.innerHTML += '  -H "'+name+': '+val+'" \<br>';
-			}
-
+            if (headers.innerHTML != ''){
+                var json = JSON.parse(headers.innerHTML);
+                var i = -1;
+                for (i < json.headers.length; i++;){
+                    var str = JSON.stringify(json.headers[i]);
+                    var name = str.substring(2, str.indexOf(':')-1);
+                    var val = json.headers[i][str.substring(2, str.indexOf(':')-1)];
+                    http.setRequestHeader(name, val);
+                    result.innerHTML += '  -H "'+name+': '+val+'" \<br>';
+			    }
+            }
             http.onload = function(){
                 var res = JSON.parse(http.responseText); 
                 console.log(res);
