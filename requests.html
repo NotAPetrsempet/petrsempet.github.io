@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Определение организации</title>
+    <style>
+        .placeholder::-webkit-input-placeholder{color: #57b0ff;}
+        .in{
+            background:transparent;
+            font-size: 18px;
+            height: 50px;
+            width: 500px;
+            border: none;
+            border-bottom: 1px solid #57b0ff;
+            color: white;
+            outline:none;
+        }
+        @font-face {
+            font-family: IBM;
+            src:url('Ibmplexsans.ttf');
+        }
+    </style>
+    <script>
+        var http = new XMLHttpRequest();
+        function send(){
+            http.open(method.value, adress.value);
+            result.innerHTML = 'curl -X '+method.value+' \<br>';
+            var json = JSON.parse(headers.innerHTML);
+            var i = -1;
+            for (i < json.headers.length; i++;){
+                var str = JSON.stringify(json.headers[i]);
+                var name = str.substring(2, str.indexOf(':')-1);
+                var val = json.headers[i][str.substring(2, str.indexOf(':')-1)];
+                http.setRequestHeader(name, val);
+                result.innerHTML += '  -H "'+name+': '+val+'" \<br>';
+			}
+
+            http.onload = function(){
+                var res = JSON.parse(http.responseText); 
+                console.log(res);
+                result.innerHTML += '</br>ОТВЕТ ПОЛУЧЕН<br>'+http.status+' '+http.statusText+'<br></br>';
+                result.innerHTML += http.responseText;
+            }
+
+                        if (body.value != ""){
+                result.innerHTML += "  -d  '"+body.value+"' \<br>";
+                http.send(body.value);
+			}else{
+                http.send();     
+			}
+            result.innerHTML += '  '+adress.value+'<br>';
+		}
+    </script>
+</head>
+
+<body style="background: #00001c; color: #57b0ff; font-family:IBM;">
+    <center>
+         <h3>Центр запросов</h3>
+        <input required class="in placeholder" style="width: 390px;" tabIndex="-5" id="adress" autofocus placeholder="Адрес">
+        <input required class="in placeholder" style="width: 100px;" tabIndex="-5" id="method" value="GET" autofocus placeholder="Метод">
+        <br></br>
+        <textarea class="in placeholder" style="width: 500px; resize: vertical;" tabIndex="-5" id="headers" autofocus placeholder="Заголовки">{"headers":[{"Content-Type":"application/json"}]}</textarea>
+        <br></br>
+        <input class="in placeholder" style="width: 500px;" tabIndex="-5" id="body" autofocus placeholder="Тело">
+        <br></br>
+        <input type="submit" style="color: white; background-color: #57b0ff; width: 100px; height: 30px; border: none;" onclick="send()">
+        <br></br>
+     </center>
+     <p id="result" style="color: white"></p>
+</body>
+</html>
