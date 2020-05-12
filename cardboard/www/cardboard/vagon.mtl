@@ -1,0 +1,147 @@
+# 3ds Max Wavefront OBJ Exporter v0.97b - (c)2007 guruware
+# File Created: 12.05.2020 12:08:22
+
+newmtl Window
+	Ns 0.1000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5882 0.5882 0.5882
+	Kd 0.5882 0.5882 0.5882
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka C:\Users\Petr\Documents\model-4176\zh-d-transport-3d-model-poezda-rossiya-21353\Cars\plackart\Textures\kyzov.jpg
+	map_Kd C:\Users\Petr\Documents\model-4176\zh-d-transport-3d-model-poezda-rossiya-21353\Cars\plackart\Textures\kyzov.jpg
+
+newmtl inside
+	Ns 0.1000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5880 0.5880 0.5880
+	Kd 0.5880 0.5880 0.5880
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka C:\Users\Petr\Documents\model-4176\zh-d-transport-3d-model-poezda-rossiya-21353\Cars\plackart\Textures\inside.bmp
+	map_Kd C:\Users\Petr\Documents\model-4176\zh-d-transport-3d-model-poezda-rossiya-21353\Cars\plackart\Textures\inside.bmp
+	map_d C:\Users\Petr\Documents\model-4176\zh-d-transport-3d-model-poezda-rossiya-21353\Cars\plackart\Textures\inside_a.bmp
+
+newmtl detali
+	Ns 0.1000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5880 0.5880 0.5880
+	Kd 0.5880 0.5880 0.5880
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka C:\Users\Petr\Documents\model-4176\zh-d-transport-3d-model-poezda-rossiya-21353\Cars\plackart\Textures\detali.bmp
+	map_Kd C:\Users\Petr\Documents\model-4176\zh-d-transport-3d-model-poezda-rossiya-21353\Cars\plackart\Textures\detali.bmp
+	map_d C:\Users\Petr\Documents\model-4176\zh-d-transport-3d-model-poezda-rossiya-21353\Cars\plackart\Textures\detali_a.bmp
+
+newmtl ostalnoe
+	Ns 0.1000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5880 0.5880 0.5880
+	Kd 0.5880 0.5880 0.5880
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka C:\Users\Petr\Documents\model-4176\zh-d-transport-3d-model-poezda-rossiya-21353\Cars\kupe\Textures\ostalnoe.jpg
+	map_Kd C:\Users\Petr\Documents\model-4176\zh-d-transport-3d-model-poezda-rossiya-21353\Cars\kupe\Textures\ostalnoe.jpg
+
+newmtl inside_bmp
+	Ns 0.1000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5882 0.5882 0.5882
+	Kd 0.5882 0.5882 0.5882
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka C:\Users\Petr\Documents\model-4176\zh-d-transport-3d-model-poezda-rossiya-21353\Cars\plackart\Textures\inside.bmp
+	map_Kd C:\Users\Petr\Documents\model-4176\zh-d-transport-3d-model-poezda-rossiya-21353\Cars\plackart\Textures\inside.bmp
+	map_d C:\Users\Petr\Documents\model-4176\zh-d-transport-3d-model-poezda-rossiya-21353\Cars\plackart\Textures\inside_a.bmp
+
+newmtl Kyzov
+	Ns 0.1000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5882 0.5882 0.5882
+	Kd 0.5882 0.5882 0.5882
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka C:\Users\Petr\Documents\model-4176\zh-d-transport-3d-model-poezda-rossiya-21353\Cars\plackart\Textures\kyzov.jpg
+	map_Kd C:\Users\Petr\Documents\model-4176\zh-d-transport-3d-model-poezda-rossiya-21353\Cars\plackart\Textures\kyzov.jpg
+	map_d C:\Users\Petr\Documents\model-4176\zh-d-transport-3d-model-poezda-rossiya-21353\Cars\plackart\Textures\kyzov_a.jpg
+
+newmtl torec
+	Ns 0.1000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5882 0.5882 0.5882
+	Kd 0.5882 0.5882 0.5882
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka C:\Users\Petr\Documents\model-4176\zh-d-transport-3d-model-poezda-rossiya-21353\Cars\kupe\Textures\torec.jpg
+	map_Kd C:\Users\Petr\Documents\model-4176\zh-d-transport-3d-model-poezda-rossiya-21353\Cars\kupe\Textures\torec.jpg
+
+newmtl krusha
+	Ns 0.1000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5882 0.5882 0.5882
+	Kd 0.5882 0.5882 0.5882
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka C:\Users\Petr\Documents\model-4176\zh-d-transport-3d-model-poezda-rossiya-21353\Cars\kupe\Textures\krusha.jpg
+	map_Kd C:\Users\Petr\Documents\model-4176\zh-d-transport-3d-model-poezda-rossiya-21353\Cars\kupe\Textures\krusha.jpg
+
+newmtl detali_bmp
+	Ns 0.1000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5882 0.5882 0.5882
+	Kd 0.5882 0.5882 0.5882
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka C:\Users\Petr\Documents\model-4176\zh-d-transport-3d-model-poezda-rossiya-21353\Cars\plackart\Textures\detali.bmp
+	map_Kd C:\Users\Petr\Documents\model-4176\zh-d-transport-3d-model-poezda-rossiya-21353\Cars\plackart\Textures\detali.bmp
+	map_d C:\Users\Petr\Documents\model-4176\zh-d-transport-3d-model-poezda-rossiya-21353\Cars\plackart\Textures\detali_a.bmp
+
+newmtl soobjenie
+	Ns 0.1000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.5880 0.5880 0.5880
+	Kd 0.5880 0.5880 0.5880
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
+	map_Ka C:\Users\Petr\Documents\model-4176\zh-d-transport-3d-model-poezda-rossiya-21353\Cars\kupe\Textures\soobjenie.jpg
+	map_Kd C:\Users\Petr\Documents\model-4176\zh-d-transport-3d-model-poezda-rossiya-21353\Cars\kupe\Textures\soobjenie.jpg
