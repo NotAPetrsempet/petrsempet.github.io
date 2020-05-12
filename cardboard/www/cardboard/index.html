@@ -105,17 +105,16 @@
 
       window.addEventListener('resize', resize, false);
       setTimeout(resize, 1);
-
-  });        
+    }      
     const mtlLoader = new MtlLoader();
-  mtlLoader.load('vagon.mtl', (mtlParseResult) => {
+  mtlLoader.load('/cardboard/www/cardboard/vagon.mtl', (mtlParseResult) => {
     const materials =  MtlObjBridge.addMaterialsFromMtlLoader(mtlParseResult);
     objLoader.addMaterials(materials);
-    objLoader.load('vagon.obj', (root) => {
+    objLoader.load('/cardboard/www/cardboard/vagon.obj', (root) => {
       scene.add(root);
     });
 
-    }
+    
 
     function resize() {
       var width = container.offsetWidth;
