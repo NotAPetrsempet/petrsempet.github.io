@@ -43,7 +43,7 @@ var camera, scene, renderer;
       container = document.getElementById('example');
       element.style.background = "url('https://www.aduvan.ru/wp-content/uploads/photo-gallery/sky-texturs/thumb/sky-texture_(3).jpg')";
       container.appendChild(element);
-
+console.log(element);
       effect = new THREE.StereoEffect(renderer);
 
       scene = new THREE.Scene();
@@ -82,7 +82,7 @@ var camera, scene, renderer;
       scene.add(light);
 
       var texture = THREE.ImageUtils.loadTexture(
-        'textures/patterns/grass-1.jpg
+        'textures/patterns/checker.png
       );
       texture.wrapS = THREE.RepeatWrapping;
       texture.wrapT = THREE.RepeatWrapping;
