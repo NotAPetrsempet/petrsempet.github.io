@@ -41,7 +41,6 @@ var camera, scene, renderer;
       renderer = new THREE.WebGLRenderer();
       element = renderer.domElement;
       container = document.getElementById('example');
-      element.style.background = "url('https://www.aduvan.ru/wp-content/uploads/photo-gallery/sky-texturs/thumb/sky-texture_(3).jpg')";
       container.appendChild(element);
 console.log(element);
       effect = new THREE.StereoEffect(renderer);
@@ -96,7 +95,10 @@ console.log(element);
         shading: THREE.FlatShading,
         map: texture
       });
-
+      var bg = THREE.ImageUtils.loadTexture(
+        'https://www.aduvan.ru/wp-content/uploads/photo-gallery/sky-texturs/thumb/sky-texture_(3).jpg'
+      );
+      scene.background = bg;
       var geometry = new THREE.PlaneGeometry(1000, 1000);
 
       var mesh = new THREE.Mesh(geometry, material);
