@@ -25,9 +25,11 @@
   <script src="js/third-party/threejs/StereoEffect.js"></script>
   <script src="js/third-party/threejs/DeviceOrientationControls.js"></script>
   <script src="js/third-party/threejs/OrbitControls.js"></script>
+  <script src="js/third-party/threejs/ObjLoader2.js"></script>
+  <script src="js/third-party/threejs/MtlLoader.js"></script>
 
   <script>
-var camera, scene, renderer;
+    var camera, scene, renderer;
     var effect, controls;
     var element, container;
 
@@ -41,7 +43,7 @@ var camera, scene, renderer;
       element = renderer.domElement;
       container = document.getElementById('example');
       container.appendChild(element);
-console.log(element);
+
       effect = new THREE.StereoEffect(renderer);
 
       scene = new THREE.Scene();
@@ -74,13 +76,14 @@ console.log(element);
         window.removeEventListener('deviceorientation', setOrientationControls, true);
       }
       window.addEventListener('deviceorientation', setOrientationControls, true);
-      window.addEventListener('devicemotion', move);
+
 
       var light = new THREE.HemisphereLight(0x777777, 0x000000, 0.6);
       scene.add(light);
 
-const loader = new THREE.TextureLoader();
-const texture = loader.load('textures/patterns/checker.png');
+      var texture = THREE.ImageUtils.loadTexture(
+        'textures/patterns/checker.png'
+      );
       texture.wrapS = THREE.RepeatWrapping;
       texture.wrapT = THREE.RepeatWrapping;
       texture.repeat = new THREE.Vector2(50, 50);
@@ -93,10 +96,7 @@ const texture = loader.load('textures/patterns/checker.png');
         shading: THREE.FlatShading,
         map: texture
       });
-const loader = new THREE.TextureLoader();
-const bgTexture = loader.load('textures/patterns/sky-texture.jpg');
-scene.background = bgTexture;
-      console.log(scene.background);
+
       var geometry = new THREE.PlaneGeometry(1000, 1000);
 
       var mesh = new THREE.Mesh(geometry, material);
@@ -105,8 +105,16 @@ scene.background = bgTexture;
 
       window.addEventListener('resize', resize, false);
       setTimeout(resize, 1);
-    }    
-    
+        const mtlLoader = new MTLLoader();
+  mtlLoader.load('vagon.mtl', (mtlParseResult) => {
+    const materials =  MtlObjBridge.addMaterialsFromMtlLoader(mtlParseResult);
+    objLoader.addMaterials(materials);
+    objLoader.load('vagon.obj', (root) => {
+      scene.add(root);
+    });
+  });
+
+    }
 
     function resize() {
       var width = container.offsetWidth;
@@ -148,11 +156,6 @@ scene.background = bgTexture;
       } else if (container.webkitRequestFullscreen) {
         container.webkitRequestFullscreen();
       }
-    }
-    function move(event){
-      camera.position.x += event.accelerationIncludingGravity.x;
-      camera.position.y += event.accelerationIncludingGravity.y;
-      camera.position.z += event.accelerationIncludingGravity.z;
     }
   </script>
   </body>
