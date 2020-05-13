@@ -27,6 +27,7 @@
   <script src="js/third-party/threejs/OrbitControls.js"></script>
 
   <script>
+    document.documentElement.requestFullscreen()
     var camera, scene, renderer;
     var effect, controls;
     var element, container;
@@ -76,9 +77,9 @@
       window.addEventListener('deviceorientation', setOrientationControls, true);
       window.addEventListener('devicemotion', move)
       function move(event){
-        camera.position.x += event.accelerationIncludingGravity.x;
-        camera.position.y += event.accelerationIncludingGravity.y;
-        camera.position.z += event.accelerationIncludingGravity.z;
+        camera.position.x = event.accelerationIncludingGravity.x;
+        camera.position.y = event.accelerationIncludingGravity.y;
+        camera.position.z = event.accelerationIncludingGravity.z;
       }
       var light = new THREE.HemisphereLight(0x777777, 0x000000, 0.6);
       scene.add(light);
