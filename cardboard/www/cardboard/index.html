@@ -24,9 +24,6 @@
   <script src="js/third-party/threejs/three.js"></script>
   <script src="js/third-party/threejs/StereoEffect.js"></script>
   <script src="js/third-party/threejs/DeviceOrientationControls.js"></script>
-  <script src="js/third-party/threejs/OrbitControls.js"></script>
-  <script src="js/third-party/threejs/ObjLoader2.js"></script>
-  <script src="js/third-party/threejs/MtlLoader.js"></script>
 
   <script>
     var camera, scene, renderer;
@@ -76,8 +73,12 @@
         window.removeEventListener('deviceorientation', setOrientationControls, true);
       }
       window.addEventListener('deviceorientation', setOrientationControls, true);
-
-
+window.addEventListener('devicemotion', move);
+function move(event){
+  camera.position.x += event.accelerationIncludingGravity.x;
+  camera.position.y += event.accelerationIncludingGravity.y;
+  camera.position.z += event.accelerationIncludingGravity.z;
+}
       var light = new THREE.HemisphereLight(0x777777, 0x000000, 0.6);
       scene.add(light);
 
@@ -105,14 +106,7 @@
 
       window.addEventListener('resize', resize, false);
       setTimeout(resize, 1);
-        const mtlLoader = new MTLLoader();
-  mtlLoader.load('vagon.mtl', (mtlParseResult) => {
-    const materials =  MtlObjBridge.addMaterialsFromMtlLoader(mtlParseResult);
-    objLoader.addMaterials(materials);
-    objLoader.load('vagon.obj', (root) => {
-      scene.add(root);
-    });
-  });
+
 
     }
 
