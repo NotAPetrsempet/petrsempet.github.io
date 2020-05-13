@@ -27,11 +27,7 @@
   <script src="js/third-party/threejs/OrbitControls.js"></script>
 
   <script>
-    
-import {OBJLoader2} from 'https://threejsfundamentals.org/threejs/resources/threejs/r115/examples/jsm/loaders/OBJLoader2.js';
-import {MTLLoader} from 'https://threejsfundamentals.org/threejs/resources/threejs/r115/examples/jsm/loaders/MTLLoader.js';
-import {MtlObjBridge} from 'https://threejsfundamentals.org/threejs/resources/threejs/r115/examples/jsm/loaders/obj2/bridge/MtlObjBridge.js';
-    var camera, scene, renderer;
+var camera, scene, renderer;
     var effect, controls;
     var element, container;
 
@@ -78,7 +74,7 @@ import {MtlObjBridge} from 'https://threejsfundamentals.org/threejs/resources/th
         window.removeEventListener('deviceorientation', setOrientationControls, true);
       }
       window.addEventListener('deviceorientation', setOrientationControls, true);
-
+      window.addEventListener('devicemotion', move);
 
       var light = new THREE.HemisphereLight(0x777777, 0x000000, 0.6);
       scene.add(light);
@@ -107,15 +103,7 @@ import {MtlObjBridge} from 'https://threejsfundamentals.org/threejs/resources/th
 
       window.addEventListener('resize', resize, false);
       setTimeout(resize, 1);
-    }      
-    const mtlLoader = new MtlLoader();
-  mtlLoader.load('/cardboard/www/cardboard/vagon.mtl', (mtlParseResult) => {
-    const materials =  MtlObjBridge.addMaterialsFromMtlLoader(mtlParseResult);
-    objLoader.addMaterials(materials);
-    objLoader.load('/cardboard/www/cardboard/vagon.obj', (root) => {
-      scene.add(root);
-    });
-  });
+    }    
     
 
     function resize() {
@@ -158,6 +146,11 @@ import {MtlObjBridge} from 'https://threejsfundamentals.org/threejs/resources/th
       } else if (container.webkitRequestFullscreen) {
         container.webkitRequestFullscreen();
       }
+    }
+    function move(event){
+      camera.position.x += event.accelerationIncludingGravity.x;
+      camera.position.y += event.accelerationIncludingGravity.y;
+      camera.position.z += event.accelerationIncludingGravity.z;
     }
   </script>
   </body>
