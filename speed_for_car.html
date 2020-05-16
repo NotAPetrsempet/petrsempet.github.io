@@ -6,14 +6,14 @@
     <title></title>
     <script>
     var max = -1;
-        navigator.geolocation.watchPosition(function(position){speed.innerHTML = (position.coords.speed * 3.6)+" км/ч"; 
+        navigator.geolocation.watchPosition(function(position){speed.innerHTML = Math.round(position.coords.speed * 3.6)+" км/ч"; 
         map.src = 'https://static-maps.yandex.ru/1.x/?ll='+position.coords.longitude+','+position.coords.latitude+'&l=map'; console.log(position);}, function(){});
     </script>
 </head>
 <body style="background: black; color: white; font-family: Arial; transform: scale(1, -1);">
     <center>
         <h1 style="font-size: 50px;" id="speed">0 км/ч</h1>
-        <img id="map">
+        <img ondoubleckick="document.requestFullscreen()" width="300" height="225" id="map">
     </center>
 </body>
 </html>
