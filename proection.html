@@ -9,7 +9,6 @@
     var coords = "";
     var obl = "";
 	    var count = 0;
-	    var speed = 0;
     function getObl(lat, lon){
         var xhr = new XMLHttpRequest();
         xhr.open('GET', 'https://nominatim.openstreetmap.org/reverse?format=json&lat='+lat+'&lon='+lon+'&zoom=18&addressdetails=1');
@@ -137,6 +136,8 @@
      synth.load();
     
 	}
+	    var last_speed = 0;
+	    var razgon = 0;
     function start(){
 
         document.head.requestFullscreen();
@@ -149,6 +150,7 @@
 		
         setInterval(function(){if (coords != ""){getObl(coords.latitude, coords.longitude)}}, 10000);
 		};
+								    xhr.send();
         start_btn.style.display = 'none';
         main.style.display = 'block';
         var msg = "Здравствуйте!"; var date = new Date(); if (date.getHours() < 12){msg = "Доброе утро!";}else if (date.getHours() < 17& date.getHours() > 11){msg = "Добрый день!";}else if (date.getHours() > 16){msg = "Добрый вечер!";} speak(msg+' Система готова к работе! Будьте бдительны, не забывайте о правилах дорожного движения, ведь они созданы для вашей безопасности. Желаем вам, счастливой поездки!', true);}, function(err){speak('Произошла ошибка! Проверьте своё соединение и наличие разрешения на использование GPS');
