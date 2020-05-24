@@ -83,9 +83,10 @@
         start_btn.style.display = 'none';
         main.style.display = 'block';
         var msg = "Здравствуйте!"; var date = new Date(); if (date.getHours() < 12){msg = "Доброе утро!";}else if (date.getHours() < 17& date.getHours() > 11){msg = "Добрый день!";}else if (date.getHours() > 16){msg = "Добрый вечер!";} speak(msg+' Система готова к работе! Будьте бдительны, не забывайте о правилах дорожного движения, ведь они созданы для вашей безопасности. Из-за их нарушения, на дорогах ежедневно гибнут тысячи людей! Желаем вам. счастливой поездки!', true);}, function(err){speak('Произошла ошибка! Проверьте своё соединение и наличие разрешения на использование GPS');
+
+        },{enableHighAccuracy: true, timeout: 1000, maximumAge: 0});
         setInterval(function(){if (coords != ""){getObl(coords.latitude, coords.longitude)}}, 10000);
         setInterval(function(){navigator.geolocation.getCurrentPosition(data, function(err){console.warn(err);},{enableHighAccuracy: true, timeout: 1000, maximumAge: 1000});}, 50);
-        },{enableHighAccuracy: true, timeout: 1000, maximumAge: 0});
     }
     </script>
 </head>
