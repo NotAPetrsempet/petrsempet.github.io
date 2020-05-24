@@ -9,6 +9,7 @@
     var coords = "";
     var obl = "";
 	    var count = 0;
+	    var speed = 0;
     function getObl(lat, lon){
         var xhr = new XMLHttpRequest();
         xhr.open('GET', 'https://nominatim.openstreetmap.org/reverse?format=json&lat='+lat+'&lon='+lon+'&zoom=18&addressdetails=1');
@@ -26,6 +27,8 @@
     }
 	    var n_count = 0;
 	    var n_timer = 0;
+	    var e_count = 0;
+	    var s_count = 0;
     function data(position){
 	    count++;
 	    debug.innerHTML = position.coords.latitude + ', '+position.coords.longitude;
@@ -44,7 +47,71 @@
 		    	n_timer = setTimeout(function(){n_count = 0;}, 90000);
 		    }
 	    }
+	    	    if (position.coords.heading == 90 & e_count == 0){
+	    	speak('Восток');
+		    e_count = 1;
+		    if (e_count == 1){
+		    	setTimeout(function(){e_count = 0;}, 90000);
+		    }
+	    }	    	    if (position.coords.heading == 180 & s_count == 0){
+	    	speak('Юг');
+		    s_count = 1;
+		    if (s_count == 1){
+		    	setTimeout(function(){s_count = 0;}, 90000);
+		    }
+	    }	    	    if (position.coords.heading == 270 & e_count == 0){
+	    	speak('Запад');
+		    w_count = 1;
+		    if (w_count == 1){
+		    	setTimeout(function(){w_count = 0;}, 90000);
+		    }
+	    }
+	    if ((position.coords.speed * 3.6) < 60){
+	    	speed.style.color = 'green';
+		    if (zone > 1){
+		    	zone = 1;
+			    var audio = new Audio('down.m4a');
+			    audio.play();
+		    }
+	    }
+	    	    if ((position.coords.speed * 3.6) < 90 & (position.coords.speed * 3.6) > 59){
+	    	speed.style.color = 'yellow';
+		    if (zone > 2){
+		    	zone = 2;
+			    var audio = new Audio('down.m4a');
+			    audio.play();
+		    }
+			    		    if (zone < 2){
+		    	zone = 2;
+			    var audio = new Audio('up.m4a');
+			    audio.play();
+		    }
+	    }
+	    	    	    if ((position.coords.speed * 3.6) < 110 & (position.coords.speed * 3.6) > 89){
+	    	speed.style.color = 'orange';
+		    if (zone > 3){
+		    	zone = 3;
+			    var audio = new Audio('down.m4a');
+			    audio.play();
+		    }
+			    		    if (zone < 3){
+		    	zone = 3;
+			    var audio = new Audio('up.m4a');
+			    audio.play();
+		    }
+	    }
+	    	    	    if ((position.coords.speed * 3.6) > 109){
+	    	speed.style.color = 'red';
+			    		    if (zone < 4){
+		    	zone = 4;
+			    var audio = new Audio('up.m4a');
+						    audio.onended = function(){speak('Внимание! Вы находитесь в красной зоне!');}
+			    audio.play();
+		    }
+	    }
     }
+			    var zone = 1;
+	    var w_count = 0;
     function speak(text, isWarning){
      var synth = new Audio('https://tts.voicetech.yandex.net/generate?format=mp3&lang=ru-RU&key=c6e36647-5bf5-46fd-9262-7820f4a867e5&emotion=good&speaker=tanya&speed=1&text='+text);
      synth.onloadeddata = function(){
