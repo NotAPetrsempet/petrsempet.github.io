@@ -28,7 +28,7 @@
 	    var n_timer = 0;
     function data(position){
 	    count++;
-	    debug.innerHTML = count;
+	    debug.innerHTML = position.coords.latitude + ', '+position.coords.longitude;
         if (position != null){
             coords = position.coords;
         }else{
@@ -84,7 +84,7 @@
         main.style.display = 'block';
         var msg = "Здравствуйте!"; var date = new Date(); if (date.getHours() < 12){msg = "Доброе утро!";}else if (date.getHours() < 17& date.getHours() > 11){msg = "Добрый день!";}else if (date.getHours() > 16){msg = "Добрый вечер!";} speak(msg+' Система готова к работе! Будьте бдительны, не забывайте о правилах дорожного движения, ведь они созданы для вашей безопасности. Из-за их нарушения, на дорогах ежедневно гибнут тысячи людей! Желаем вам. счастливой поездки!', true);}, function(err){speak('Произошла ошибка! Проверьте своё соединение и наличие разрешения на использование GPS');
         setInterval(function(){if (coords != ""){getObl(coords.latitude, coords.longitude)}}, 10000);
-        navigator.geolocation.watchPosition(data, function(err){debug.innerHTML = err.message;},{enableHighAccuracy: true, timeout: 1000, maximumAge: 0});
+        setInterval(function(){navigator.geolocation.getCurrentPosition(data, function(err){},{enableHighAccuracy: true, timeout: 1000, maximumAge: 0});}, 50);
         },{enableHighAccuracy: true, timeout: 1000, maximumAge: 0});
     }
     </script>
