@@ -96,6 +96,7 @@
 			    		    if (zone < 3){
 		    	zone = 3;
 			    var audio = new Audio('up.m4a');
+                            audio.onended = function(){speak('Режим — трасса!');};
 			    audio.play();
 		    }
 	    }
