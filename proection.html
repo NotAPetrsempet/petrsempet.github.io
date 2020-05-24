@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -8,6 +8,7 @@
     var max = -1;
     var coords = "";
     var obl = "";
+	    var count = 0;
     function getObl(lat, lon){
         var xhr = new XMLHttpRequest();
         xhr.open('GET', 'https://nominatim.openstreetmap.org/reverse?format=json&lat='+lat+'&lon='+lon+'&zoom=18&addressdetails=1');
@@ -15,15 +16,19 @@
               var json = JSON.parse(xhr.responseText);
               var new_obl = json.address.state;
               console.log(new_obl);
-              var np = json.address[0];
+              var np = json.address;
               if (new_obl != obl){
-                    new_oblast(new_obl, np);
+                    new_oblast(new_obl);
 			  }
               obl = new_obl;
 		}
         xhr.send();
     }
+	    var n_count = 0;
+	    var n_timer = 0;
     function data(position){
+	    count++;
+	    debug.innerHTML = count;
         if (position != null){
             coords = position.coords;
         }else{
@@ -32,6 +37,15 @@
         speed.innerHTML = (position.coords.speed * 3.6)+" км/ч"; 
         azimut.style.transform = 'rotate('+position.coords.heading+'deg)'; 
         console.log(position);
+	    if (position.coords.heading == 0 & n_count == 0){
+	    	speak('Север');
+		    n_count = 1;
+		    if (n_count == 1){
+		    	n_timer = setTimeout(function(){n_count = 0;}, 90000);
+		    }
+	    }
+
+	    }
     }
     function speak(text, isWarning){
      var synth = new Audio('https://tts.voicetech.yandex.net/generate?format=mp3&lang=ru-RU&key=c6e36647-5bf5-46fd-9262-7820f4a867e5&emotion=good&speaker=tanya&speed=1&text='+text);
@@ -84,6 +98,7 @@
             <h1 style="font-size: 50px;" id="speed">0 км/ч</h1>
             <br></br>
             <img id="azimut" src="compass.png" width="300" height="300">
+	    <p id="debug"></p>
         </div>
     </center>
 </body>
