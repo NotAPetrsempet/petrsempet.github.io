@@ -1,0 +1,90 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script>
+    var max = -1;
+    var coords = "";
+    var obl = "";
+    function getObl(lat, lon){
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', 'https://nominatim.openstreetmap.org/reverse?format=json&lat='+lat+'&lon='+lon+'&zoom=18&addressdetails=1');
+        xhr.onload = function(){
+              var json = JSON.parse(xhr.responseText);
+              var new_obl = json.address.state;
+              console.log(new_obl);
+              var np = json.address[0];
+              if (new_obl != obl){
+                    new_oblast(new_obl, np);
+			  }
+              obl = new_obl;
+		}
+        xhr.send();
+    }
+    function data(position){
+        if (position != null){
+            coords = position.coords;
+        }else{
+            position.coords = coords;
+        }
+        speed.innerHTML = (position.coords.speed * 3.6)+" км/ч"; 
+        azimut.style.transform = 'rotate('+position.coords.heading+'deg)'; 
+        console.log(position);
+    }
+    function speak(text, isWarning){
+     var synth = new Audio('https://tts.voicetech.yandex.net/generate?format=mp3&lang=ru-RU&key=c6e36647-5bf5-46fd-9262-7820f4a867e5&emotion=good&speaker=tanya&speed=1&text='+text);
+     synth.onloadeddata = function(){
+     if (isWarning){
+        var audio = new Audio('warning.wav');
+        audio.onended = function(){synth.play();};
+        audio.play();
+	 }else{
+      synth.play();
+	 }
+     };
+     
+     synth.load();
+	}
+    function new_oblast(oblast){
+     var synth = new Audio('https://tts.voicetech.yandex.net/generate?format=mp3&lang=ru-RU&key=c6e36647-5bf5-46fd-9262-7820f4a867e5&emotion=good&speaker=ermil&speed=1&text=Добро пожаловать! Это — '+oblast);
+          synth.onloadeddata = function(){
+        var audio = new Audio('new_oblast.mp3');
+        audio.onended = function(){synth.play();};
+        audio.play();
+     };
+     
+     synth.load();
+    
+	}
+    function start(){
+
+        document.head.requestFullscreen();
+        navigator.geolocation.getCurrentPosition(function(position){var lat = position.coords.latitude; var lon = position.coords.longitude;         var xhr = new XMLHttpRequest();
+        xhr.open('GET', 'https://nominatim.openstreetmap.org/reverse?format=json&lat='+lat+'&lon='+lon+'&zoom=18&addressdetails=1');
+        xhr.onload = function(){
+              var json = JSON.parse(xhr.responseText);
+              var new_obl = json.address.state;
+              obl = new_obl;
+		};
+        start_btn.style.display = 'none';
+        main.style.display = 'block';
+        var msg = "Здравствуйте!"; var date = new Date(); if (date.getHours() < 12){msg = "Доброе утро!";}else if (date.getHours() < 17& date.getHours() > 11){msg = "Добрый день!";}else if (date.getHours() > 16){msg = "Добрый вечер!";} speak(msg+' Система готова к работе! Будьте бдительны, не забывайте о правилах дорожного движения, ведь они созданы для вашей безопасности. Из-за их нарушения, на дорогах ежедневно гибнут тысячи людей! Желаем вам. счастливой поездки!', true);}, function(err){speak('Произошла ошибка! Проверьте своё соединение и наличие разрешения на использование GPS');},{enableHighAccuracy: false, timeout: 5000, maximumAge: 100});
+        setInterval(function(){if (coords != ""){getObl(coords.latitude, coords.longitude)}}, 10000);
+        setInterval(function(){navigator.geolocation.getCurrentPosition(data, function(err){},{enableHighAccuracy: false, timeout: 5000, maximumAge: 100});
+        }, 50);
+    }
+    </script>
+</head>
+<body style="background: black; color: white; font-family: Arial; transform: scale(1, -1);">
+    <center>
+        <h1 style="font-size: 70px;" onclick="start()" id="start_btn">СТАРТ</h1>
+        <div style="display: none;" id="main">
+            <h1 style="font-size: 50px;" id="speed">0 км/ч</h1>
+            <br></br>
+            <img id="azimut" src="compass.png" width="300" height="300">
+        </div>
+    </center>
+</body>
+</html>
