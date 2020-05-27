@@ -148,11 +148,12 @@
               var json = JSON.parse(xhr.responseText);
               var new_obl = json.address.state;
               obl = new_obl;
-		var msg = "Здравствуйте!"; var date = new Date(); if (date.getHours() < 12){msg = "Доброе утро!";}else if (date.getHours() < 17& date.getHours() > 11){msg = "Добрый день!";}else if (date.getHours() > 16){msg = "Добрый вечер!";} speak(msg+' Система готова к работе! Ваш регион — '+obl+'! Будьте бдительны, не забывайте о правилах дорожного движения, ведь они созданы для вашей безопасности. Желаем вам, счастливой поездки!', true);}, function(err){speak('Произошла ошибка! Проверьте своё соединение и наличие разрешения на использование GPS');
-
+	
         setInterval(function(){if (coords != ""){getObl(coords.latitude, coords.longitude)}}, 10000);
 		};
-								    xhr.send();
+
+		var msg = "Здравствуйте!"; var date = new Date(); if (date.getHours() < 12){msg = "Доброе утро!";}else if (date.getHours() < 17& date.getHours() > 11){msg = "Добрый день!";}else if (date.getHours() > 16){msg = "Добрый вечер!";} speak(msg+' Система готова к работе! Ваш регион — '+obl+'! Будьте бдительны, не забывайте о правилах дорожного движения, ведь они созданы для вашей безопасности. Желаем вам, счастливой поездки!', true);}, function(err){speak('Произошла ошибка! Проверьте своё соединение и наличие разрешения на использование GPS');
+							    xhr.send();
         start_btn.style.display = 'none';
         main.style.display = 'block';
         
