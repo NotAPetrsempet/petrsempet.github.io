@@ -153,10 +153,10 @@
         setInterval(function(){if (coords != ""){getObl(coords.latitude, coords.longitude)}}, 10000);
 		};
 
-					           start_btn.style.display = 'none';
+							    xhr.send();			           start_btn.style.display = 'none';
         main.style.display = 'block';
 								   }, function(err){speak('Произошла ошибка! Проверьте своё соединение и наличие разрешения на использование GPS');
-							    xhr.send();
+		
 
         
         },{enableHighAccuracy: true, timeout: 1000, maximumAge: 0});
