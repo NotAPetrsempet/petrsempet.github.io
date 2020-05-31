@@ -7,7 +7,14 @@
     <script>
     var max = -1;
     var coords = "";
+	    var last_coords = "";
+	    var max_speed = 0;
+	    var last_speed = 0;
+	    var start = 0;
+	    var razgon = false;
     var obl = "";
+	    var kml = "";
+	    
 	    var count = 0;
     function getObl(lat, lon){
         var xhr = new XMLHttpRequest();
@@ -151,6 +158,7 @@
 			var msg = "Здравствуйте!"; var date = new Date(); if (date.getHours() < 12){msg = "Доброе утро!";}else if (date.getHours() < 17& date.getHours() > 11){msg = "Добрый день!";}else if (date.getHours() > 16){msg = "Добрый вечер!";} speak(msg+' Система готова к работе! Ваш регион — '+obl+'! Будьте бдительны, не забывайте о правилах дорожного движения, ведь они созданы для вашей безопасности. Желаем вам, счастливой поездки!', true);
 			
         setInterval(function(){if (coords != ""){getObl(coords.latitude, coords.longitude)}}, 10000);
+		setInterval(function(){if (last_coords != coords){if (coords.altitude == null){kml += coords.latitude+", "+coords.longitude+", 0";}else{kml += coords.latitude+", "+coords.longitude+", "+coords.altitude;}kml += "\n"; last_coords = coords;}});
 		};
 
 							    xhr.send();			           start_btn.style.display = 'none';
