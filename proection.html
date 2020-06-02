@@ -169,24 +169,19 @@
               var new_obl = json.address.state;
               obl = new_obl;
 			var msg = "Здравствуйте!"; var date = new Date(); if (date.getHours() < 12){msg = "Доброе утро!";}else if (date.getHours() < 17& date.getHours() > 11){msg = "Добрый день!";}else if (date.getHours() > 16){msg = "Добрый вечер!";} speak(msg+' Система готова к работе. связь установлена! Ваш регион — '+obl+'! Будьте бдительны, не забывайте о правилах дорожного движения, ведь они созданы для вашей безопасности. Желаем вам, счастливой поездки! Для завершения два раза нажмите на компас!', true);
-						if (getWeather().weather.icon.indexOf('n') != -1){
-					night = true;
-				}else{
-					night = false;
-				}	
-		setInterval(function(){
-				if (getWeather().weather.icon.indexOf('n') != -1){
-					if ((getWeather().weather.icon.indexOf('n') != -1) != night){
+				 getWeather();
+setInterval(function(){getWeather()}, 60000);
+		setInterval(function(){if (weather.weather[0].icon.indexOf('n') != -1){
+					if (weather.weather[0].icon.indexOf('n') != -1) != night){
 						speak('Ночной режим');
 					}
 					night = true;
 				}else{
 					night = false;
-					if ((getWeather().weather.icon.indexOf('n') != -1) != night){
+					if (weather.weather[0].icon.indexOf('n') != -1) != night){
 						speak('Дневной режим');
 					}
-				}
-			}, 60000);
+				}}, 700000);
         setInterval(function(){if (coords != ""){getObl(coords.latitude, coords.longitude)}}, 10000);
 		setInterval(function(){if (last_coords.latitude != coords.latitude || last_coords.longitude != coords.longitude){if (coords.altitude == null){kml += coords.latitude+", "+coords.longitude+", 0";}else{kml += coords.latitude+", "+coords.longitude+", "+coords.altitude;}kml += "\n"; last_coords = coords;}}, 5000);
 		};
