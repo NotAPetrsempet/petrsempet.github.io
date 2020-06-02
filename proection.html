@@ -172,13 +172,13 @@
 				 getWeather();
 setInterval(function(){getWeather()}, 60000);
 		setInterval(function(){if (weather.weather[0].icon.indexOf('n') != -1){
-					if (weather.weather[0].icon.indexOf('n') != -1) != night){
+					if ((weather.weather[0].icon.indexOf('n') != -1) != night){
 						speak('Ночной режим');
 					}
 					night = true;
 				}else{
 					night = false;
-					if (weather.weather[0].icon.indexOf('n') != -1) != night){
+					if ((weather.weather[0].icon.indexOf('n') != -1) != night){
 						speak('Дневной режим');
 					}
 				}}, 700000);
