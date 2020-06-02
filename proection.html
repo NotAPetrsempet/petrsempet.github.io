@@ -18,11 +18,13 @@
 	    var odometr = 0;
 	    var stop_time = 0;
 	    var count = 0;
+	    var weather = "";
 	    function getWeather(){
 	    	var xhr = new XMLHttpRequest();
 		    xhr.open('GET', 'https://openweathermap.org/data/2.5/weather?lat='+coords.latitude+'&lon='+coords.longitude+'&appid=439d4b804bc8187953eb36d2a8c26a02');
-		    xhr.onload = function(){return JSON.parse(xhr.responseText);}
+		    xhr.onload = function(){weather =  JSON.parse(xhr.responseText);}
 		    xhr.send();
+		    return xhr;
 	    }
     function getObl(lat, lon){
         var xhr = new XMLHttpRequest();
