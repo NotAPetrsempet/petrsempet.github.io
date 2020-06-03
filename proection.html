@@ -348,7 +348,8 @@ setInterval(function(){getWeather(); setTimeout(function(){console.log(weather);
 					}
 				}}, 5000);}, 60000);
         setInterval(function(){if (coords != ""){getObl(coords.latitude, coords.longitude)}}, 10000);
-		setInterval(function(){if (last_coords.latitude != coords.latitude || last_coords.longitude != coords.longitude){if (coords.altitude == null){kml += coords.latitude+", "+coords.longitude+", "+coords.speed+' км/ч';}else{kml += coords.latitude+", "+coords.longitude+", "+coords.altitude;}kml += "\n"; odometr += getDistation(last_coords, coords.latitude, coords.longitude); last_coords = coords;}}, 5000);
+		last_coords = coords;
+		setInterval(function(){if (last_coords.latitude != coords.latitude || last_coords.longitude != coords.longitude){if (coords.altitude == null){kml += coords.latitude+", "+coords.longitude+", "+coords.speed+' км/ч';}else{kml += coords.latitude+", "+coords.longitude+", "+coords.altitude;}kml += "\n"; odometr += getDistation(last_coords, coords.latitude, coords.longitude); last_coords = coords;}, 5000);
 		};
        
 
@@ -375,6 +376,8 @@ setInterval(function(){getWeather(); setTimeout(function(){console.log(weather);
 }
 	    var start_address = '';
 	    function downloadKML(){
+		    var lat = coords.latitude;
+		    var lon = coords.longitude;
 		    main.style.display = 'none';
 		    start_btn.style.display = 'block';
 		    start_btn.innerHTML = 'Генерация трека поездки...';
@@ -397,6 +400,7 @@ setInterval(function(){getWeather(); setTimeout(function(){console.log(weather);
   a.href = URL.createObjectURL(file);
   a.download = 'Трек поездки '+date.getDate()+'.'+date.getMonth()+'.'+date.getYear()+'.kml';
   a.click();
+		speak(null, true);
 		start_btn.innerHTML = 'Спасибо за поездку!<br></br>Трек загружен!';
 	}
 		    xhr.send();
