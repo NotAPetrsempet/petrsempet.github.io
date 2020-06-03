@@ -8,7 +8,7 @@
     var max = -1;
     var coords = "";
 	    var last_coords = "";
-	    var max_coords = 0;
+	    var max_coords = '';
 	    var points = [];
 	    var last_speed = 0;
 	    var start_time = 0;
@@ -19,6 +19,7 @@
 	    var stop_time = 0;
 	    var count = 0;
 	    var weather = "";
+	    var drive_time = 0;
 	    function getWeather(){
 	    	var xhr = new XMLHttpRequest();
 		    xhr.open('GET', 'https://openweathermap.org/data/2.5/weather?lat='+coords.latitude+'&lon='+coords.longitude+'&appid=439d4b804bc8187953eb36d2a8c26a02');
@@ -39,6 +40,16 @@
                     new_oblast(new_obl);
 			  }
               obl = new_obl;
+		}
+        xhr.send();
+    }
+	    var address = '';
+	        function getAddress(lat, lon){
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', 'https://nominatim.openstreetmap.org/reverse?format=json&lat='+lat+'&lon='+lon+'&zoom=18&addressdetails=1');
+        xhr.onload = function(){
+              var json = JSON.parse(xhr.responseText);
+		address = json;
 		}
         xhr.send();
     }
@@ -182,6 +193,11 @@
         speed.innerHTML = (position.coords.speed * 3.6)+" км/ч"; 
         azimut.style.transform = 'rotate('+position.coords.heading+'deg)'; 
         console.log(position);
+	    if (position.coords.speed < 1){
+	    	stop_time += 50;
+	    }else{
+	    	drive_time += 50;
+	    }
 	    if (position.coords.heading == weather.wind.deg & w_count == 0){
 		    var opas = false;
 		    var data_wind = getBofort();
@@ -251,7 +267,7 @@
 			    		    if (zone < 3){
 		    	zone = 3;
 			    var audio = new Audio('up.m4a');
-                            audio.onended = function(){speak('Режим — трасса!');};
+                            audio.onended = function(){speak('Оранжевая зона');};
 			    audio.play();
 		    }
 	    }
@@ -264,6 +280,15 @@
 			    audio.play();
 		    }
 	    }
+	    if ((position.coords.speed * 3.6) > max){
+		max = (position.coords.speed * 3.6);
+		    max_coords = position.coords.latitude+', '+position.coords.longitude+', ';
+		    if (position.coords.altitude == null){
+		    	max_coords += '0';
+		    }else{
+		    	max_coords += position.coords.altitude;		    
+		    }
+	}
 	    if (!night){
 	    	speed.style.color = 'white';
 	    }
@@ -307,6 +332,8 @@
               var json = JSON.parse(xhr.responseText);
               var new_obl = json.address.state;
               obl = new_obl;
+		start_address = json.display_name;
+
 			var msg = "Здравствуйте!"; var date = new Date(); if (date.getHours() < 12){msg = "Доброе утро!";}else if (date.getHours() < 17& date.getHours() > 11){msg = "Добрый день!";}else if (date.getHours() > 16){msg = "Добрый вечер!";} speak(msg+' Система готова к работе. связь установлена! Ваш регион — '+obl+'! Будьте бдительны, не забывайте о правилах дорожного движения, ведь они созданы для вашей безопасности. Желаем вам, счастливой поездки! Для завершения два раза нажмите на компас!', true);
 				 getWeather();
 setInterval(function(){getWeather(); setTimeout(function(){console.log(weather); if (weather.weather[0].icon.indexOf('n') != -1){
@@ -321,8 +348,9 @@ setInterval(function(){getWeather(); setTimeout(function(){console.log(weather);
 					}
 				}}, 5000);}, 60000);
         setInterval(function(){if (coords != ""){getObl(coords.latitude, coords.longitude)}}, 10000);
-		setInterval(function(){if (last_coords.latitude != coords.latitude || last_coords.longitude != coords.longitude){if (coords.altitude == null){kml += coords.latitude+", "+coords.longitude+", 0";}else{kml += coords.latitude+", "+coords.longitude+", "+coords.altitude;}kml += "\n"; last_coords = coords;}}, 5000);
+		setInterval(function(){if (last_coords.latitude != coords.latitude || last_coords.longitude != coords.longitude){if (coords.altitude == null){kml += coords.latitude+", "+coords.longitude+", "+coords.speed+' км/ч';}else{kml += coords.latitude+", "+coords.longitude+", "+coords.altitude;}kml += "\n"; odometr += getDistation(last_coords, coords.latitude, coords.longitude); last_coords = coords;}}, 5000);
 		};
+       
 
 							    xhr.send();			           start_btn.style.display = 'none';
         main.style.display = 'block';
@@ -333,6 +361,40 @@ setInterval(function(){getWeather(); setTimeout(function(){console.log(weather);
         },{enableHighAccuracy: true, timeout: 1000, maximumAge: 0});
         setInterval(function(){navigator.geolocation.getCurrentPosition(data, function(err){console.warn(err);},{enableHighAccuracy: true, timeout: 1000, maximumAge: 1000});}, 50);
     }
+	    function getDistation(from, tolat, tolon){
+	var lat = from.coords.latitude;
+	var lon = from.coords.longitude;
+	var lat_length = 40075 / 360;
+	var lon_length = 40075 * Math.cos(lat) / 360;
+	var razn_lat = lat - tolat;
+	var razn_lon = lon - tolon;
+	var lat_dist = lat_length * razn_lat;
+	var lon_dist = lon_length * razn_lon;
+	var real_dist = Math.sqrt((Math.pow(lat_dist,2) + Math.pow(lon_dist, 2)));
+	return real_dist;
+}
+	    var start_address = '';
+	    function downloadKML(){
+		    main.style.display = 'none';
+		    start_btn.style.display = 'block';
+		    start_btn.innerHTML = 'Генерация трека поездки...';
+	    	var sred_speed = odometr / (drive_time/1000);
+		    sred_speed *= 3.6;
+		    speak('Спасибо за поездку! Средняя скорость составила '+sred_speed+' км/ч! Более подробные данные вы найдёте в файле трека поездки! До свидания!');
+		    var end_addr = '';
+		    var date = new Date();
+		    var pattern = '<?xml version="1.0" encoding="UTF-8"?>\n<kml xmlns="http://www.opengis.net/kml/2.2"><Document>\n<name>Трек поездки '+date.getDate()+'.'+date.getMonth()+'.'+date.getYear()+'</name>\n<description>Трек сгенерирован Mercedes-Benz Assistant. \n';
+		    var xhr = neew XMLHttpRequest();
+		            xhr.open('GET', 'https://nominatim.openstreetmap.org/reverse?format=json&lat='+lat+'&lon='+lon+'&zoom=18&addressdetails=1');
+        xhr.onload = function(){
+              var res = JSON.parse(xhr.responseText);
+		end_addr = res.display_name;
+		var drive = new Date(drive_time);
+		var stopd = new Date(stop_time);
+		pattern += 'Точка старта: '+start_address+';\nТочка завершения: '+end_addr+';\nСредняя скорость: '+sred_speed+' км/ч;\nМаксимальная скорость: '+max+' км/ч;\nЗначение одометра: '+(odometr/1000)+' км;\nВремя движения: '+drive.getHours()+':'+drive.getMinutes()+':'+drive.getSeconds()+'\nВремя остановки: '+stopd.getHours()+':'+stopd.getMinutes()+':'+stopd.getSeconds()+'</description><LineStyle><color>#ff0000</color><width>4</width></LineStyle><Placemark><name>Трек поездки</name><description>Cлед, оставляемый в среде движущейся заряженной частицей.</description><LineString><extrude>1</extrude><tessellate>1</tessellate><altitudeMode>absolute</altitudeMode><coordinates>'+kml+'</coordinates></LineString></Placemark></Document></kml>';
+	}
+		    xhr.send();
+	    }
     </script>
 </head>
 <body style="background: black; color: white; font-family: Arial; transform: scale(1, -1);">
@@ -343,6 +405,8 @@ setInterval(function(){getWeather(); setTimeout(function(){console.log(weather);
             <br></br>
             <img id="azimut" ondoubleclick="end()" src="compass.png" width="300" height="300">
         </div>
+	<video id="vid"></video>
+	<canvas id="c"></canvas>
     </center>
 </body>
 </html>
