@@ -394,7 +394,7 @@ setInterval(function(){getWeather(); setTimeout(function(){console.log(weather);
 		end_addr = res.display_name;
 		var drive = new Date(drive_time);
 		var stopd = new Date(stop_time);
-		pattern += 'Точка старта: '+start_address+';\nТочка завершения: '+end_addr+';\nСредняя скорость: '+sred_speed+' км/ч;\nМаксимальная скорость: '+max+' км/ч;\nЗначение одометра: '+(odometr/1000)+' км;\nВремя движения: '+drive.getHours()+':'+drive.getMinutes()+':'+drive.getSeconds()+'\nВремя остановки: '+stopd.getHours()+':'+stopd.getMinutes()+':'+stopd.getSeconds()+'</description><LineStyle><color>#ff0000</color><width>4</width></LineStyle><Placemark><name>Трек поездки</name><description>Cлед, оставляемый в среде движущейся заряженной частицей.</description><LineString><extrude>1</extrude><tessellate>1</tessellate><altitudeMode>absolute</altitudeMode><coordinates>'+kml+'</coordinates></LineString></Placemark></Document></kml>';
+		pattern += 'Точка старта: '+start_address+';\nТочка завершения: '+end_addr+';\nСредняя скорость: '+sred_speed+' км/ч;\nМаксимальная скорость: '+max+' км/ч;\nЗначение одометра: '+(odometr/1000)+' км;\nВремя движения: '+drive.getHours()-3+':'+drive.getMinutes()+':'+drive.getSeconds()+'\nВремя стоянки: '+stopd.getHours()-3+':'+stopd.getMinutes()+':'+stopd.getSeconds()+'</description><LineStyle><color>#ff0000</color><width>4</width></LineStyle><Placemark><name>Трек поездки</name><description>Cлед, оставляемый в среде движущейся заряженной частицей.</description><LineString><extrude>1</extrude><tessellate>1</tessellate><altitudeMode>absolute</altitudeMode><coordinates>'+kml+'</coordinates></LineString></Placemark></Document></kml>';
   let a = document.createElement("a");
   let file = new Blob([pattern], {type: 'application/json'});
   a.href = URL.createObjectURL(file);
@@ -413,7 +413,7 @@ setInterval(function(){getWeather(); setTimeout(function(){console.log(weather);
         <div style="display: none;" id="main">
             <h1 style="font-size: 50px;" id="speed">0 км/ч</h1>
             <br></br>
-            <img id="azimut" ondoubleclick="end()" src="compass.png" width="300" height="300">
+            <img id="azimut" onclick="end()" src="compass.png" width="300" height="300">
         </div>
 	<video style="display: none;" id="vid"></video>
 	<canvas style="display: none;" id="c"></canvas>
