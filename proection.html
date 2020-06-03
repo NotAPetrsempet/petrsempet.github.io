@@ -349,7 +349,7 @@ setInterval(function(){getWeather(); setTimeout(function(){console.log(weather);
 				}}, 5000);}, 60000);
         setInterval(function(){if (coords != ""){getObl(coords.latitude, coords.longitude)}}, 10000);
 		last_coords = coords;
-		setInterval(function(){if (last_coords.latitude != coords.latitude || last_coords.longitude != coords.longitude){if (coords.altitude == null){kml += coords.latitude+", "+coords.longitude+",  0";}else{kml += coords.latitude+", "+coords.longitude+", "+coords.altitude;}kml += "\n";}} odometr += getDistation(last_coords, coords.latitude, coords.longitude); last_coords = coords;}, 5000);
+		setInterval(function(){if (last_coords.latitude != coords.latitude || last_coords.longitude != coords.longitude){if (coords.altitude == null){kml += coords.latitude+", "+coords.longitude+",  0";}else{kml += coords.latitude+", "+coords.longitude+", "+coords.altitude;}kml += "\n";} odometr += getDistation(last_coords, coords.latitude, coords.longitude); last_coords = coords;}, 5000);
 		};
        
 
