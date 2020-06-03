@@ -392,6 +392,12 @@ setInterval(function(){getWeather(); setTimeout(function(){console.log(weather);
 		var drive = new Date(drive_time);
 		var stopd = new Date(stop_time);
 		pattern += 'Точка старта: '+start_address+';\nТочка завершения: '+end_addr+';\nСредняя скорость: '+sred_speed+' км/ч;\nМаксимальная скорость: '+max+' км/ч;\nЗначение одометра: '+(odometr/1000)+' км;\nВремя движения: '+drive.getHours()+':'+drive.getMinutes()+':'+drive.getSeconds()+'\nВремя остановки: '+stopd.getHours()+':'+stopd.getMinutes()+':'+stopd.getSeconds()+'</description><LineStyle><color>#ff0000</color><width>4</width></LineStyle><Placemark><name>Трек поездки</name><description>Cлед, оставляемый в среде движущейся заряженной частицей.</description><LineString><extrude>1</extrude><tessellate>1</tessellate><altitudeMode>absolute</altitudeMode><coordinates>'+kml+'</coordinates></LineString></Placemark></Document></kml>';
+  let a = document.createElement("a");
+  let file = new Blob([data], {type: 'application/json'});
+  a.href = URL.createObjectURL(file);
+  a.download = 'Трек поездки '+date.getDate()+'.'+date.getMonth()+'.'+date.getYear()+'.kml';
+  a.click();
+		start_btn.innerHTML = 'Спасибо за поездку!<br></br>Трек загружен!';
 	}
 		    xhr.send();
 	    }
