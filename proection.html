@@ -349,7 +349,7 @@ setInterval(function(){getWeather(); setTimeout(function(){console.log(weather);
 				}}, 5000);}, 60000);
         setInterval(function(){if (coords != ""){getObl(coords.latitude, coords.longitude)}}, 10000);
 		last_coords = coords;
-		setInterval(function(){if (last_coords.latitude != coords.latitude || last_coords.longitude != coords.longitude){if (coords.altitude == null){kml += coords.latitude+", "+coords.longitude+", "+coords.speed+' км/ч';}else{kml += coords.latitude+", "+coords.longitude+", "+coords.altitude;}kml += "\n";} odometr += getDistation(last_coords, coords.latitude, coords.longitude); last_coords = coords;}, 5000);
+		setInterval(function(){if (last_coords.latitude != coords.latitude || last_coords.longitude != coords.longitude){if (coords.altitude == null){kml += coords.latitude+", "+coords.longitude+",  0";}else{kml += coords.latitude+", "+coords.longitude+", "+coords.altitude;}kml += "\n";}} odometr += getDistation(last_coords, coords.latitude, coords.longitude); last_coords = coords;}, 5000);
 		};
        
 
@@ -363,8 +363,8 @@ setInterval(function(){getWeather(); setTimeout(function(){console.log(weather);
         setInterval(function(){navigator.geolocation.getCurrentPosition(data, function(err){console.warn(err);},{enableHighAccuracy: true, timeout: 1000, maximumAge: 1000});}, 50);
     }
 	    function getDistation(from, tolat, tolon){
-	var lat = from.coords.latitude;
-	var lon = from.coords.longitude;
+	var lat = from.latitude;
+	var lon = from.longitude;
 	var lat_length = 40075 / 360;
 	var lon_length = 40075 * Math.cos(lat) / 360;
 	var razn_lat = lat - tolat;
