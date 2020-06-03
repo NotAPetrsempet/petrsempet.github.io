@@ -1,9 +1,23 @@
 <div style="border-radius: 50%; background: red; color: white; width: 100px; height: 100px;" onclick="rec()">Погнали</div>
 <script>
  function rec(){
-    var voice = new webkitSpeechRecognition();
-voice.onend = function(){voice.start(); alert('Чё молчишь?????????');};
-voice.onresult = function(event){alert(event.results[0][0].transcript); voice.start();};
-voice.start();
+  navigator.getUserMedia({video: true}, function(){
+     var device = '';
+  navigator.mediaDevices.enumerateDevices().then(function(val){device = val;}, function(){})
+
+     var i = 0;
+     var d_list = [];
+   var msg;
+  var id_list = [];
+     while (i < device.length){
+         if (device[i].kind == 'videoinput'){
+            d_list[d_list.length] = device[i].label; 
+          d_list[d_list.length] = i; 
+          msg += d_list.length+'.'+ device[i].label+'\n';
+         }
+      i++;
+     }
+  var id = parseInt(prompt('Что использовать?\n'+msg))-1;
+  }, function(){});
 }
 </script>
