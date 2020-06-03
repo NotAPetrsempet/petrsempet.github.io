@@ -1,0 +1,9 @@
+<i style="border-radius: 50%; background: red; color: white; width: 100px; height: 100px;" onclick="rec()">Погнали</i>
+<script>
+ function rec(){
+    var voice = new webkitSpeechRecognition();
+voice.onend = function(){voice.start();};
+voice.onresult = function(event){console.log(event.results[0][0].transcript); voice.start();};
+voice.start();
+}
+</script>
