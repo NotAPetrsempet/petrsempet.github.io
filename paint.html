@@ -1,6 +1,25 @@
-<canvas onmousemove="function(e){console.log(e);}" id="c"></canvas>
+<div style="height: 50px;"><input type="color"></div>
+<canvas onmousemove="draw" id="c"></canvas>
 <script>
-  c.style.width = window.screenWidth;
-  c.style.height = window.screenHeight;
+  c.style.width = window.innerWidth;
+  c.style.height = window.innerHeight-50;
   var ctx = c.getContext('2d');
+  function drawEllipse(x, y, color) {
+    ctx.beginPath();
+   var last = ctx.fillStyle;
+  ctx.fillStyle = color;
+    ctx.translate(x, y);
+
+    ctx.scale(1, 1);
+    ctx.arc(0, 0, 10, 0, Math.PI * 2, true);
+
+
+    ctx.closePath();
+    ctx.fill();
+  ctx.fillStyle = last;
+}
+  var col = "black";
+  function draw(e){
+      drawEllipse(e.x, e.y, col);
+  }
 </script>
