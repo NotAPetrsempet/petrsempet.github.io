@@ -1,5 +1,5 @@
 <div style="height: 50px;"><input type="color"></div>
-<canvas onmousemove="draw" id="c"></canvas>
+<canvas id="c"></canvas>
 <script>
   c.style.width = window.innerWidth;
   c.style.height = window.innerHeight-50;
@@ -19,6 +19,7 @@
   ctx.fillStyle = last;
 }
   var col = "black";
+  c.onmousemove = draw;
   function draw(e){
       drawEllipse(e.x, e.y, col);
   }
