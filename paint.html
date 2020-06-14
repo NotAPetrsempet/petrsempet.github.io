@@ -19,8 +19,7 @@
   ctx.fillStyle = last;
 }
   var col = "black";
-  c.onmousemove = draw;
-  function draw(e){
+  c.onmousemove = function (e){
       drawEllipse(e.x, e.y, col);
   }
 </script>
