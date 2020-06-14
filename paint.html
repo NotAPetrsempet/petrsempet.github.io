@@ -5,6 +5,7 @@
   c.style.height = window.innerHeight-50;
   var ctx = c.getContext('2d');
   function drawEllipse(x, y, color) {
+    ctx.save();
     ctx.beginPath();
    var last = ctx.fillStyle;
   ctx.fillStyle = color;
@@ -13,7 +14,7 @@
     ctx.scale(1, 1);
     ctx.arc(0, 0, 10, 0, Math.PI * 2, true);
 
-
+ctx.restore();
     ctx.closePath();
     ctx.fill();
   ctx.fillStyle = last;
