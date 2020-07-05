@@ -1,1 +1,5 @@
 AddType application/x-httpd-php .php .htm .html
+AuthName nagovicino_banya
+AuthType Basic
+AuthUserFile /mqtt/.htpasswd
+require valid-user
