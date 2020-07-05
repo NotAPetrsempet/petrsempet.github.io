@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Помощник</title>
+</head>
+<body>
+    <center>
+        <h1 style="font-size: 70px; color:red;" onclick="aud.play();" id="batt">0%</h1>
+        <audio id="aud" autoplay></audio>
+        <script>
+            navigator.getBattery().then(function(b){
+                batt.innerHTML = (b.level * 100) + '%';
+                if (b.level <= 0.5) {
+                    var g = b.level / (0.5/255);
+                    batt.style.color = 'rgb(255,'+g+',0)';
+                }else{
+                    var r = 255-((b.level/2) / (0.5/255));
+                    batt.style.color = 'rgb('+r+',255,0)';
+                
+				}
+                aud.src = "https://tts.voicetech.yandex.net/generate?format=wav&lang=ru-RU&key=c6e36647-5bf5-46fd-9262-7820f4a867e5&emotion=good&speaker=zahar&speed=1&text=Телефон%20за-ряжен%20на%20"+b.level*100+"%25";
+
+            });
+        </script>
+    </center>
+</body>
+</html>
