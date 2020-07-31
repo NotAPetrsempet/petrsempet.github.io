@@ -6,7 +6,8 @@ var last = "";
   navigator.getUserMedia({video: true}, function(stream){vid.srcObject = stream; vid.play();     var ctx = c.getContext('2d');
     ctx.drawImage(vid, 0, 0, 640, 480);
     last = ctx.getImageData(0,0, 640, 480);
-                                                      setInterval(function(){check();}, 40);}, function(){});
+                                                      setInterval(function(){    var ctx = c.getContext('2d');
+    ctx.drawImage(vid, 0, 0,640,480);}, 40);setInterval(function(){check();}, 2000);}, function(){});
   function check(){
     var ctx = c.getContext('2d');
     ctx.drawImage(vid, 0, 0,640,480);
