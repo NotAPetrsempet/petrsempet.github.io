@@ -1,5 +1,5 @@
 <video id="vid" style="display: none;"></video>
-<canvas id="c" style="width: 640 px; height: 480px;"></canvas>
+<canvas id="c" style="width: 640px; height: 480px;"></canvas>
 <script>
 var last = "";
   navigator.getUserMedia({video: true}, function(stream){vid.srcObject = stream; vid.play();     var ctx = c.getContext('2d');
@@ -16,15 +16,19 @@ var last = "";
     while (i < imageData.length){
       if (imageData[i] == last[i]){
         ctx.putImageData([0,0,0,0], x, y);
+        console.log('Change: '+x+', '+y);
         i+= 4;
       }else{i++; if (imageData[i] == last[i]){
         ctx.putImageData([0,0,0,0], x, y);
+        console.log('Change: '+x+', '+y);
         i+= 3;
         }else{i++; if (imageData[i] == last[i]){
         ctx.putImageData([0,0,0,0], x, y);
+          console.log('Change: '+x+', '+y);
         i+= 2;
         }else{i++; if (imageData[i] == last[i]){
         ctx.putImageData([0,0,0,0], x, y);
+          console.log('Change: '+x+', '+y);
         i+= 1;
         }}}}
       
