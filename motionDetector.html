@@ -2,10 +2,11 @@
 <canvas id="c" style="width: 640px; height: 480px;"></canvas>
 <script>
 var last = "";
+    var blackData = new ImageData(new Uint8ClampedArray([0,0,0,0]), 1, 1); 
   navigator.getUserMedia({video: true}, function(stream){vid.srcObject = stream; vid.play();     var ctx = c.getContext('2d');
     ctx.drawImage(vid, 0, 0, 640, 480);
     last = ctx.getImageData(0,0, 640, 480);
-                                                         setInterval(function(){check();}, 40);}, function(){});
+                                                      setInterval(function(){check();}, 40);}, function(){});
   function check(){
     var ctx = c.getContext('2d');
     ctx.drawImage(vid, 0, 0,640,480);
@@ -15,19 +16,19 @@ var last = "";
     var i = 0;
     while (i < imageData.data.length){
       if (imageData.data[i] == last.data[i]){
-        ctx.putImageData([0,0,0,0], x, y);
+        ctx.putImageData(blackData, x, y);
         console.log('Change: '+x+', '+y);
         i+= 4;
       }else{i++; if (imageData.data[i] == last.data[i]){
-        ctx.putImageData([0,0,0,0], x, y);
+        ctx.putImageData(blackData, x, y);
         console.log('Change: '+x+', '+y);
         i+= 3;
         }else{i++; if (imageData.data[i] == last.data[i]){
-        ctx.putImageData([0,0,0,0], x, y);
+        ctx.putImageData(blackData, x, y);
           console.log('Change: '+x+', '+y);
         i+= 2;
         }else{i++; if (imageData.data[i] == last.data[i]){
-        ctx.putImageData([0,0,0,0], x, y);
+        ctx.putImageData(blackData, x, y);
           console.log('Change: '+x+', '+y);
         i+= 1;
         }}}}
