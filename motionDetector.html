@@ -13,20 +13,20 @@ var last = "";
     var x = 0;
     var y = 0;
     var i = 0;
-    while (i < imageData.length){
-      if (imageData[i] == last[i]){
+    while (i < imageData.data.length){
+      if (imageData.data[i] == last[i]){
         ctx.putImageData([0,0,0,0], x, y);
         console.log('Change: '+x+', '+y);
         i+= 4;
-      }else{i++; if (imageData[i] == last[i]){
+      }else{i++; if (imageData.data[i] == last[i]){
         ctx.putImageData([0,0,0,0], x, y);
         console.log('Change: '+x+', '+y);
         i+= 3;
-        }else{i++; if (imageData[i] == last[i]){
+        }else{i++; if (imageData.data[i] == last[i]){
         ctx.putImageData([0,0,0,0], x, y);
           console.log('Change: '+x+', '+y);
         i+= 2;
-        }else{i++; if (imageData[i] == last[i]){
+        }else{i++; if (imageData.data[i] == last[i]){
         ctx.putImageData([0,0,0,0], x, y);
           console.log('Change: '+x+', '+y);
         i+= 1;
