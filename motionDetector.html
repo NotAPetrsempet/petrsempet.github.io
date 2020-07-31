@@ -8,7 +8,7 @@ var last = "";
                                                          setInterval(function(){check();}, 40);}, function(){});
   function check(){
     var ctx = c.getContext('2d');
-    ctx.drawImage(vid, 0, 0);
+    ctx.drawImage(vid, 0, 0,640,480);
     var imageData = ctx.getImageData(0,0, 640, 480);
     var x = 0;
     var y = 0;
