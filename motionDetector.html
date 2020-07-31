@@ -26,14 +26,14 @@ var last = "";
         }else{i++; if (imageData[i] == last[i]){
         ctx.putImageData([0,0,0,0], x, y);
         i+= 1;
-        }
-      }
+        }}}}
+      
       x++;
       if (x == 641){
         x = 0;
         y++;
       }
-    
+             }
     last = imageData;
   }
 </script>
