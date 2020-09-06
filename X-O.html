@@ -54,31 +54,30 @@
       </div>
 		</center>
 		<script>
-			alert('Произоша ошибка!');
 				var win = false;
 				var rand = Math.floor(Math.random() * (4 - 1)) + 1;
 				var user = "";
 				var comp = "";
 			var chit = false;
 				if (rand == 1){
-				write("Здравствуйте! Вы ходите крестиком! Дерзайте! ERROR", 1);
+				write("Здравствуйте! Вы ходите крестиком! Дерзайте!", 1);
 				comp = "O";
 				user = "X";
 				}
 				if (rand == 2){
-				write("Здравствуйте! Вы ходите ноликом! Дерзайте! ERROR", 1);
+				write("Здравствуйте! Вы ходите ноликом! Дерзайте!", 1);
 				comp = "X";
 				user = "O";
 				}
 				if (rand == 3){
-				write("Здравствуйте! Вы ходите крестиком! Дерзайте! ERROR", 1);
+				write("Здравствуйте! Вы ходите крестиком! Дерзайте!", 1);
 				comp = "O";
 				user = "X";
 				random();
 				}
 				if (rand == 4){
 				check();
-				write("Здравствуйте! Вы ходите ноликом! Дерзайте! ERROR", 1);
+				write("Здравствуйте! Вы ходите ноликом! Дерзайте!", 1);
 				comp = "X";
 				user = "O";
 				random();
@@ -275,8 +274,6 @@
 				}
 			}*/
 				function check_comp(){
-					random();
-					return;
 					var temp = "";
 										if (i5.innerHTML != ""){temp+=i5.innerHTML;}
 					if (i9.innerHTML != ""){temp+=i9.innerHTML;}
