@@ -1,0 +1,99 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>WoodSim</title>
+
+</head>
+<body onclick="start()">
+    <div id="player" style="width: 51px; height: 51px; position: absolute; left: 0px; top: 139px;"><img src="player.webp" width="51" height="51"></div>
+    <div id="polygon" style="height: 200px; background: #00AAAA;"></div>
+        <script>
+        var lock = false;
+        var audio = new Audio('bg.mp3');
+        audio.loop = true;
+        function start(){
+        console.log('Поезали');
+                    setInterval(function() {
+                    console.log('Бз');
+        if (!lock){
+                    audio.play();
+                    player.style.left = (parseInt(player.style.left) + 1) + 'px';
+                    if (!w){
+                        player.style.top = (parseInt(player.style.top) + 2) + 'px';
+                    }
+                    if (check() == false){
+                        audio.pause();
+                        var putin = new Audio('game-over1.mp3');
+                        document.body.innerHTML = '<h1 align="center" style="z-index: 100; color: red; position: absolute; top: 20px; left: center;">Вы проиграли!</h1><div style="opacity: 40%; background: black;">' + document.body.innerHTML+'</div>'; 
+                        lock = true;
+                        putin.play();
+                    }
+               }}, 30);
+        }
+        var w = false;
+        window.onkeypress = function(event){
+        console.log(event);
+               /*if (event.key == "d" & !lock){
+                    audio.play();
+                    player.style.left = (parseInt(player.style.left) + 1) + 'px';
+                    if (check() == false){
+                        audio.pause();
+                        var putin = new Audio('game-over1.mp3');
+                        document.body.innerHTML = '<h1 align="center" style="z-index: 100; color: red; position: absolute; top: 20px; left: center;">Вы проиграли!</h1><div style="opacity: 40%; background: black;">' + document.body.innerHTML+'</div>'; 
+                        lock = true;
+                        putin.play();
+                    }
+               }*/
+               if (event.key == "w" & !lock){
+                    player.style.top = (parseInt(player.style.top) - 2) + 'px';
+                    audio.play();
+                    w = true;
+               }
+               /*if (event.key == "s" & !lock){
+                    player.style.top = (parseInt(player.style.top) + 2) + 'px';
+                    audio.play();
+               }*/
+               var left = parseInt(player.style.left);
+               if (left > (parseInt(w19.style.left) + 100) & !lock){
+                    lock = true;
+                    var win = new Audio('win.mp3');
+                    audio.pause();
+                    win.currentTime = 5;
+                    win.play();
+               }
+        };
+                window.onkeyup = function(event){
+        console.log(event.key);
+               if (event.key == "d" || event.key == "w" || event.key == "s"){
+                    // audio.pause();
+               }
+               if (event.key == "w"){
+                      w = false;
+               }
+        };
+        function check(){
+            var i = 0;
+            while (i < 20){
+                var element = document.getElementById('w'+i);
+                var left = (parseInt(player.style.left)+51);
+                var top = (parseInt(player.style.top)+51);
+                if (left <= (parseInt(element.style.left)+30) & left >= (parseInt(element.style.left)+20) & top >= (parseInt(element.style.top) + 20) & top <= 200) return false;
+                i++;
+            }
+            return true;
+        }
+        createWood();
+        function createWood(){
+            var i = 0;
+            while (i < 20){
+            var height = Math.floor(Math.random() * (60 - 145)) + 145;
+                var code = '<div id="w'+i+'" style="width: 50px; height: '+height+'px; background: url(tree.png); background-size: cover; position: absolute; left: '+(150+(i*50))+'px; top: '+(200-height)+'px;"></div>';
+                polygon.innerHTML += code;
+                i++;
+                }
+        };
+    </script>
+</body>
+</html>
